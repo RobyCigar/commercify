@@ -1,0 +1,8 @@
+li {
+	opacity: 0.9;
+	cursor: pointer;
+}
+
+li:hover {
+	opacity: 1;
+}
