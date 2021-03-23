@@ -1,7 +1,12 @@
-import React from 'react';
+import {Link} from 'react-router-dom'
+import wa from '../assets/whatsapp.svg'
+import fb from '../assets/facebook.svg'
+import tw from '../assets/twitter.svg'
+import ig from '../assets/instagram.svg'
 
 const Footer = (props) => {
   return (
+    <>
     <div className="py-5 d-flex flex-column flex-md-row justify-content-center border-top ">
     	<ul className="mx-5 list-unstyled">
     		<h4>About</h4>
@@ -22,7 +27,22 @@ const Footer = (props) => {
     		<li>Blog</li>
     		<li>Others...</li>
     	</ul>
+        <div className="d-flex justify-content-center m-5">
+            <Link>
+            <img className="mx-2" style={{width: 30}} src={wa} alt=""/>
+            </Link>
+            <Link>
+            <img className="mx-2" style={{width: 30}} src={fb} alt=""/>
+            </Link>
+            <Link>
+            <img className="mx-2" style={{width: 30}} src={tw} alt=""/>
+            </Link>
+            <Link>
+            <img className="mx-2" style={{width: 30}} src={ig} alt=""/>
+            </Link>
+        </div>
     </div>
+    </>
   )
 }
 

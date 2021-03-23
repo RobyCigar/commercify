@@ -5,7 +5,7 @@ import Footer from '../components/footer'
 const Landing = (props) => {
   return (
   	<>
-  	<Navbar/>
+  	<Navbar login={true} register={true}/>
   	<Carousel/>
   	<Footer/>
   	</>

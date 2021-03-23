@@ -4,9 +4,10 @@ import {
 	Route,
 	Link
 } from 'react-router-dom'
-import LandingPage from './landing-page'
+import LandingPage from './welcome'
 import Login from './login'
 import Register from './register'
+import Home from './home'
 
 const Routes = (props) => {
   return (
@@ -20,6 +21,9 @@ const Routes = (props) => {
           </Route>
           <Route path="/register">
             <Register/>
+          </Route>
+          <Route path="/home">
+            <Home/>
           </Route>
    			</Switch>
    		</Router>	

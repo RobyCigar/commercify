@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import {
 	Collapse,
 	Navbar,
@@ -14,9 +14,9 @@ import {
 	NavbarText,
 	Button,
 } from "reactstrap";
-import logo from "../assets/logo.png";
+import gear from "../assets/cogs.svg";
 
-const Navigation = (props) => {
+const Navigation = ({ login, register, logout }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const toggle = () => setIsOpen(!isOpen);
@@ -27,12 +27,20 @@ const Navigation = (props) => {
 				<Collapse isOpen={isOpen} navbar>
 					<Nav className="mr-auto" navbar>
 						<NavItem className="ml-3">
-							<NavLink href="/components/">Portfolio</NavLink>
+							<Link to="/">
+								<NavLink>Home</NavLink>
+							</Link>
 						</NavItem>
 						<NavItem className="ml-3">
-							<NavLink href="https://github.com/Robycigar">
-								GitHub
-							</NavLink>
+							<NavLink href="https://github.com/Robycigar">GitHub</NavLink>
+						</NavItem>
+						<NavItem className="ml-3">
+							<NavLink>Start Selling</NavLink>
+						</NavItem>
+						<NavItem className="ml-3">
+							<Link to="/home">
+								<NavLink>All Products</NavLink>
+							</Link>
 						</NavItem>
 						<UncontrolledDropdown nav inNavbar>
 							<DropdownToggle nav caret className="ml-3">
@@ -47,16 +55,38 @@ const Navigation = (props) => {
 							</DropdownMenu>
 						</UncontrolledDropdown>
 					</Nav>
-					<NavbarText className="mr-4">
-						<Button color="secondary px-3">Sign Up</Button>{" "}
-					</NavbarText>
-					<NavbarText className="mr-5 text-white">
-						<Link to='/login'>
-						<Button className="px-4" color="primary">
-							Login
-						</Button>{" "}
-						</Link>
-					</NavbarText>
+					{register ? (
+						<NavbarText className="mr-4">
+							<Link to="/register">
+								<Button color="secondary px-3">Sign Up</Button>{" "}
+							</Link>
+						</NavbarText>
+					) : null}
+
+					{login ? (
+						<NavbarText className="mr-5 text-white">
+							<Link to="/login">
+								<Button outline className="px-4" color="primary">
+									Login
+								</Button>{" "}
+							</Link>
+						</NavbarText>
+					) : null}
+
+					{logout ? (
+						<>
+							<UncontrolledDropdown className="mx-4" inNavbar>
+								<DropdownToggle caret><img style={{width: 20}} src={gear} alt="" /></DropdownToggle>
+								<DropdownMenu right>
+									<DropdownItem header>Settings</DropdownItem>
+									<DropdownItem>Profile</DropdownItem>
+									<DropdownItem>Dropdown Item Text</DropdownItem>
+									<DropdownItem divider />
+									<Link to="/"><DropdownItem className="text-danger">Logout</DropdownItem></Link>
+								</DropdownMenu>
+							</UncontrolledDropdown>
+						</>
+					) : null}
 				</Collapse>
 			</Navbar>
 		</div>

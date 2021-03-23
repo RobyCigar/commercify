@@ -2,7 +2,8 @@
 module.exports = {
 	app: {
 		apiURL: 'api',
-		serverURL: process.env.SERVER_URL
+		serverURL: process.env.SERVER_URL,
+		allowedOrigin: process.env.CORS
 	},
 
 	jwt: {
@@ -23,10 +24,6 @@ module.exports = {
 
 	db: {
 		url: process.env.MONGO
-	},
-
-	allowedOrigin: {
-		url: process.env.CORS
 	},
 
 	google: {

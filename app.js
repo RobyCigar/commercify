@@ -14,7 +14,7 @@ const PORT = 8000;
 
 // Import Router and Config
 const keys = require("./config/keys");
-const { allowedOrigin } = keys;
+const { allowedOrigin } = keys.app;
 const app = express();
 const api = require('./routes')
 
@@ -41,8 +41,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-const corsOptions = {
-  origin: allowedOrigin
+var corsOptions = {
+  origin: allowedOrigin,
+  optionsSuccessStatus: 200,
+	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+	credentials: true 
 }
 app.use(cors(corsOptions))
 

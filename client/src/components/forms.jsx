@@ -4,6 +4,7 @@ import { useState } from "react";
 const Forms = ({
 	email,
 	password,
+	passwordVerify,
 	textArea,
 	select,
 	multiple,
@@ -11,10 +12,13 @@ const Forms = ({
 	radio,
 	checkbox,
 	firstName,
-	lastName
+	lastName,
+	fullName,
+	onSubmit,
+	onChange
 }) => {
 	return (
-		<Form>
+		<Form onSubmit={onSubmit}>
 			{email ? (
 				<FormGroup>
 					<Label for="exampleEmail">Email</Label>
@@ -22,7 +26,8 @@ const Forms = ({
 						type="email"
 						name="email"
 						id="exampleEmail"
-						placeholder="Your Email"
+						placeholder="Type your email"
+						onChange={onChange}
 					/>
 				</FormGroup>
 			) : null}
@@ -33,7 +38,8 @@ const Forms = ({
 						type="firstname"
 						name="firstname"
 						id="firstname"
-						placeholder=""
+						placeholder="Type your first name"
+						onChange={onChange}
 					/>
 				</FormGroup>
 			) : null}
@@ -44,7 +50,20 @@ const Forms = ({
 						type="lastname"
 						name="lastname"
 						id="lastname"
-						placeholder=""
+						placeholder="type your last name"
+						onChange={onChange}
+					/>
+				</FormGroup>
+			) : null}
+			{fullName ? (
+				<FormGroup>
+					<Label for="exampleEmail">Full Name</Label>
+					<Input
+						type="fullname"
+						name="fullname"
+						id="fullname"
+						placeholder="type your full name"
+						onChange={onChange}
 					/>
 				</FormGroup>
 			) : null}
@@ -56,13 +75,26 @@ const Forms = ({
 						name="password"
 						id="examplePassword"
 						placeholder="Your Password"
+						onChange={onChange}
+					/>
+				</FormGroup>
+			) : null}
+			{passwordVerify ? (
+				<FormGroup>
+					<Label for="examplePassword">Verify Password</Label>
+					<Input
+						type="password"
+						name="password1"
+						id="examplePassword"
+						placeholder="Type again"
+						onChange={onChange}
 					/>
 				</FormGroup>
 			) : null}
 			{select ? (
 				<FormGroup>
 					<Label for="exampleSelect">Select</Label>
-					<Input type="select" name="select" id="exampleSelect">
+					<Input type="select" name="select" id="exampleSelect" onChange={onChange}>
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
@@ -135,7 +167,7 @@ const Forms = ({
 				</FormGroup>
 			) : null}
 
-			<Button outline className="my-3" size="lg" color="primary">
+			<Button className="my-3" color="primary">
 				Submit
 			</Button>
 		</Form>

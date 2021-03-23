@@ -70,6 +70,8 @@ router.post("/login", (req, res) => {
 router.post("/register", (req, res) => {
   const { email, firstName, lastName, password, isSubscribed } = req.body;
 
+  console.log(req.body)
+
   if (!email) {
     return res.status(400).json({ error: "You must enter an email address." });
   }
@@ -299,6 +301,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", {
     scope: ["profile", "email"],
+    successRedirect: 'http://localhost:3000/home',
     failureRedirect: "/login",
     session: false,
   }),
@@ -306,6 +309,8 @@ router.get(
     const payload = {
       id: req.user.id,
     };
+
+    console.log('ini user', req.user)
 
     jwt.sign(payload, secret, { expiresIn: tokenLife }, (err, token) => {
       if(err) {
@@ -320,7 +325,7 @@ router.get(
         // Save JWT to localStorage
         window.localStorage.setItem('token', '${jwt}');
         // Redirect browser to root of application
-        window.location.href = 'https://google.com';
+        window.location.href = 'http://localhost:3000/home';
       </script>
     </html>       
     `;
