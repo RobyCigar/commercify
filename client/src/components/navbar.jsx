@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import {
 	Collapse,
@@ -14,10 +14,18 @@ import {
 	NavbarText,
 	Button,
 } from "reactstrap";
+import UserCtx from '../App'
 import gear from "../assets/cogs.svg";
 
 const Navigation = ({ login, register, logout }) => {
+	const context = useContext(UserCtx)
 	const [isOpen, setIsOpen] = useState(false);
+
+	const logoutUser = () => {
+		
+	}
+
+	console.log('context', context)
 
 	const toggle = () => setIsOpen(!isOpen);
 	return (
@@ -32,7 +40,9 @@ const Navigation = ({ login, register, logout }) => {
 							</Link>
 						</NavItem>
 						<NavItem className="ml-3">
-							<NavLink href="https://github.com/Robycigar">GitHub</NavLink>
+							<NavLink href="https://github.com/Robycigar">
+								GitHub
+							</NavLink>
 						</NavItem>
 						<NavItem className="ml-3">
 							<NavLink>Start Selling</NavLink>
@@ -66,7 +76,11 @@ const Navigation = ({ login, register, logout }) => {
 					{login ? (
 						<NavbarText className="mr-5 text-white">
 							<Link to="/login">
-								<Button outline className="px-4" color="primary">
+								<Button
+									outline
+									className="px-4"
+									color="primary"
+								>
 									Login
 								</Button>{" "}
 							</Link>
@@ -76,13 +90,26 @@ const Navigation = ({ login, register, logout }) => {
 					{logout ? (
 						<>
 							<UncontrolledDropdown className="mx-4" inNavbar>
-								<DropdownToggle caret><img style={{width: 20}} src={gear} alt="" /></DropdownToggle>
+								<DropdownToggle caret>
+									<img
+										style={{ width: 20 }}
+										src={gear}
+										alt=""
+									/>{" "}
+									{"  "} Settings {"  "}
+								</DropdownToggle>
 								<DropdownMenu right>
 									<DropdownItem header>Settings</DropdownItem>
 									<DropdownItem>Profile</DropdownItem>
-									<DropdownItem>Dropdown Item Text</DropdownItem>
+									<DropdownItem>
+										Dropdown Item Text
+									</DropdownItem>
 									<DropdownItem divider />
-									<Link to="/"><DropdownItem className="text-danger">Logout</DropdownItem></Link>
+									<Link to="/">
+										<DropdownItem onClick={logoutUser} className="text-danger">
+											Logout
+										</DropdownItem>
+									</Link>
 								</DropdownMenu>
 							</UncontrolledDropdown>
 						</>

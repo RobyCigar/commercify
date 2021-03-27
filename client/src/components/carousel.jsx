@@ -92,7 +92,7 @@ const Crsl = (props) => {
         />
       </Carousel>
       </div>
-      <div className="d-flex flex-column align-items-center">
+      <div className="d-flex flex-column flex-sm-row flex-md-column flex-lg-column align-items-center">
         <img className="m-3" src={pic4} style={{width: '25vw', minWidth: 200}} alt=""/>
         <img className="m-3" src={pic5} style={{width: '25vw', minWidth: 200}} alt=""/>
       </div>

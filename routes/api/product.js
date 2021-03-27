@@ -12,6 +12,22 @@ const role = require('../../middleware/role');
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
+/*
+post /add
+get /list
+get /
+get /:id
+get /item/:slug
+get /list/category/:slug
+get /list/brand/:slug
+get /list/select
+put /:id
+put /:id/active
+delete /delete/:id
+  
+*/
+
+
 router.post(
   '/add',
   auth,
@@ -19,19 +35,13 @@ router.post(
   upload.single('image'),
   async (req, res) => {
     try {
-      const sku = req.body.sku;
       const name = req.body.name;
       const description = req.body.description;
       const quantity = req.body.quantity;
       const price = req.body.price;
-      const taxable = req.body.taxable;
       const isActive = req.body.isActive;
       const brand = req.body.brand != 0 ? req.body.brand : null;
       const image = req.file;
-
-      if (!sku) {
-        return res.status(400).json({ error: 'You must enter sku.' });
-      }
 
       if (!description || !name) {
         return res
@@ -47,23 +57,15 @@ router.post(
         return res.status(400).json({ error: 'You must enter a price.' });
       }
 
-      const foundProduct = await Product.findOne({ sku });
-
-      if (foundProduct) {
-        return res.status(400).json({ error: 'This sku is already in use.' });
-      }
-
       let imageUrl = '';
       let imageKey = '';
 
 
       const product = new Product({
-        sku,
         name,
         description,
         quantity,
         price,
-        taxable,
         isActive,
         brand,
         imageUrl,

@@ -49,6 +49,7 @@ passport.use(
       const {id} = profile
       const { given_name, family_name, picture, email } = profile._json
 
+      console.log('here')
       User.findOne({ email: email }, (err, existUser) => {
           if(err) {
             console.log('error', err)

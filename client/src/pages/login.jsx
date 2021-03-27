@@ -1,6 +1,7 @@
-import { FormText } from "reactstrap";
-import { Link } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { FormText, Alert } from "reactstrap";
+import { Link, Redirect } from "react-router-dom";
+import { useState, useEffect, useContext, useReducer } from "react";
+import GoogleButton from "react-google-button";
 import axios from "axios";
 
 import Forms from "../components/forms";
@@ -9,56 +10,69 @@ import Footer from "../components/footer";
 import { UserCtx } from "../App";
 import { login } from "./api";
 
+const reducer = (state, action) => {
+	switch (action.type) {
+		case "email":
+			return { ...state, email: action.val };
+		case "password":
+			return { ...state, password: action.val };
+	}
+};
+
 const Login = (props) => {
 	const { user, setUser } = useContext(UserCtx);
-	const  [email, setEmail]  = useState("");
-	const [password, setPassword] = useState("");
-	const [submit, setSubmit] = useState(false)
+	const [state, dispatch] = useReducer(reducer, {});
+	const [alert, setAlert] = useState(false);
+	const [success, setSuccess] = useState(false)
 
-	useEffect(() => {
-		if(submit) {
-			login({email: email, password: password})
-		}
-	}, [submit]);
-
-	const onSubmit = (evt) => {
+	const onSubmit = async (evt) => {
 		evt.preventDefault();
-		setSubmit(true)
+		setUser(login(state, setAlert ,setSuccess, setUser))
 	};
 
 	const onChange = (evt) => {
 		const target = evt.target;
-		switch (target.type) {
-			case "email":
-				setEmail("shit");
-				break;
-			case "password":
-				setPassword("psdfds");
-				break;
-		}
+		dispatch({ type: target.type, val: target.value });
 	};
 
-	console.log("email",email)
-	console.log("pass",password)
-
+	if(user) {
+		return (
+			<Redirect to="home"/>
+		)
+	}
 	return (
 		<>
 			<Navbar register={true} />
-			<div className="m-5 px-5 w-50 border-right">
-				<h2 className="my-5">
-					<strong>Login</strong>
-				</h2>
-				<Forms
-					email={true}
-					password={true}
-					multiple={false}
-					textArea={false}
-					onSubmit={onSubmit}
-					onChange={onChange}
-				/>
-				<FormText color="muted">
-					Don't have account? <Link to="/register">Sign up </Link>now
-				</FormText>
+			{alert ? <Alert color="danger">{alert}</Alert> : null}
+			<h2 className="text-center text-dark my-5">
+				<strong>Login</strong>
+			</h2>
+			<div className="d-flex my-5 flex-lg-row flex-column-reverse align-items-center">
+				<div className="w-75 mx-md-5 px-md-5 p-4 border-right border-left">
+					<Forms
+						email={true}
+						password={true}
+						multiple={false}
+						textArea={false}
+						onSubmit={onSubmit}
+						onChange={onChange}
+					/>
+					<FormText color="muted">
+						Don't have account? <Link to="/register">Sign up </Link>now
+					</FormText>
+				</div>
+				<h4>or</h4>
+				<div className="d-flex justify-content-center w-50">
+					<GoogleButton
+						className="my-5"
+						onClick={() =>
+							window.open(
+								"http://localhost:8000/api/auth/google/callback",
+								"_self"
+							)
+						}
+					/>
+				</div>
 			</div>
 			<Footer />
 		</>

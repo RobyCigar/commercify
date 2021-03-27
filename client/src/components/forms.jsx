@@ -35,7 +35,7 @@ const Forms = ({
 				<FormGroup>
 					<Label for="exampleEmail">First Name</Label>
 					<Input
-						type="firstname"
+						type="text"
 						name="firstname"
 						id="firstname"
 						placeholder="Type your first name"
@@ -47,7 +47,7 @@ const Forms = ({
 				<FormGroup>
 					<Label for="exampleEmail">Last Name</Label>
 					<Input
-						type="lastname"
+						type="text"
 						name="lastname"
 						id="lastname"
 						placeholder="type your last name"
