@@ -2,7 +2,6 @@ const passport = require('passport');
 const JwtStrategy = require('passport-jwt').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 // const FacebookStrategy = require('passport-facebook').Strategy;
-const chalk = require('chalk')
 
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const mongoose = require('mongoose');
@@ -21,8 +20,6 @@ opts.secretOrKey = secret;
 
 passport.use(
   new JwtStrategy(opts, (payload, done) => {
-    console.log(chalk.blue(payload))
-    console.log(chalk.red(done))
 
     User.findById(payload.id)
       .then(user => {
@@ -99,10 +96,6 @@ passport.use(
 //       ]
 //     },
 //     (accessToken, refreshToken, profile, done) => {
-//       console.log(chalk.cyan(accessToken))
-//       console.log(chalk.red(refreshToken))
-//       console.log(chalk.yellow(profile))
-//       console.log(chalk.green(done))
 //       User.findOne({ facebookId: profile.id })
 //         .then(user => {
 //           if (user) {

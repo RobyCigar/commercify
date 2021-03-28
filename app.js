@@ -2,7 +2,6 @@ require('dotenv').config();
 const createError = require("http-errors");
 const express = require("express");
 const mongoose = require("mongoose");
-const chalk = require("chalk")
 const cors = require("cors")
 const path = require("path");
 const bodyParser = require("body-parser");
