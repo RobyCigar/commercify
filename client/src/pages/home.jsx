@@ -16,6 +16,7 @@ const Home = (props) => {
  	return (
 		<>
 			<Navbar logout={true} />
+			
 			<Footer />
 		</>
 	);

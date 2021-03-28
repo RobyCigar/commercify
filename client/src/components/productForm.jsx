@@ -1,4 +1,11 @@
-
+import {
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+  Button
+} from 'reactstrap'
 
 const ProductForm = (props) => {
   return (
@@ -13,7 +20,7 @@ const ProductForm = (props) => {
       </FormGroup>
       <FormGroup>
         <Label for="exampleText">Quantity</Label>
-        <Input type="textarea" name="text" id="exampleText" />
+        <Input type="number" name="text" id="exampleText" />
       </FormGroup>
       <FormGroup>
         <Label for="exampleText">Text Area</Label>

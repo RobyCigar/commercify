@@ -14,18 +14,16 @@ import {
 	NavbarText,
 	Button,
 } from "reactstrap";
-import UserCtx from '../App'
+import UserCtx from "../App";
 import gear from "../assets/cogs.svg";
 
 const Navigation = ({ login, register, logout }) => {
-	const context = useContext(UserCtx)
+	const context = useContext(UserCtx);
 	const [isOpen, setIsOpen] = useState(false);
 
-	const logoutUser = () => {
-		
-	}
+	const logoutUser = () => {};
 
-	console.log('context', context)
+	console.log("context", context);
 
 	const toggle = () => setIsOpen(!isOpen);
 	return (
@@ -45,7 +43,9 @@ const Navigation = ({ login, register, logout }) => {
 							</NavLink>
 						</NavItem>
 						<NavItem className="ml-3">
-							<NavLink>Start Selling</NavLink>
+							<Link to="/product/add">
+								<NavLink>Start Selling</NavLink>
+							</Link>
 						</NavItem>
 						<NavItem className="ml-3">
 							<Link to="/home">
@@ -106,7 +106,10 @@ const Navigation = ({ login, register, logout }) => {
 									</DropdownItem>
 									<DropdownItem divider />
 									<Link to="/">
-										<DropdownItem onClick={logoutUser} className="text-danger">
+										<DropdownItem
+											onClick={logoutUser}
+											className="text-danger"
+										>
 											Logout
 										</DropdownItem>
 									</Link>

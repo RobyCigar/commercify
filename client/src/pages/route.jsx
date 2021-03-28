@@ -3,6 +3,8 @@ import {
 	Switch,
 	Route,
 	Link,
+  useRouteMatch,
+  useParams,
   Redirect
 } from 'react-router-dom'
 import { useContext } from 'react'
@@ -11,6 +13,7 @@ import LandingPage from './welcome'
 import Login from './login'
 import Register from './register'
 import Home from './home'
+import AddProduct from './addProduct'
 
 const Routes = (props) => {
   return (
@@ -28,8 +31,9 @@ const Routes = (props) => {
           <PrivateRoute path="/home">
             <Home/>
           </PrivateRoute>
-
-
+          <PrivateRoute path="/product">
+            <Product/>
+          </PrivateRoute>
    			</Switch>
    		</Router>	
   )
@@ -56,5 +60,18 @@ const PrivateRoute = ({children, ...rest}) => {
     />
   )
 }
+
+const Product = () => {
+  const { path, url } = useRouteMatch()
+
+  return (
+    <Switch>
+      <Route exact path={`${path}/add`}>
+        <AddProduct/>
+      </Route>
+    </Switch>
+  )
+}
+
 
 export default Routes;
