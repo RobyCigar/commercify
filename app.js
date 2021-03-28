@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 const passport = require('passport');
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 
 // Import Router and Config
