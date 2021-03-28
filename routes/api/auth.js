@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto-js");
 const passport = require("passport");
-const chalk = require("chalk");
 
 const auth = require("../../middleware/auth");
 
