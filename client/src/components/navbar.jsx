@@ -21,7 +21,8 @@ const Navigation = ({ login, register, logout }) => {
 	const context = useContext(UserCtx);
 	const [isOpen, setIsOpen] = useState(false);
 
-	const logoutUser = () => {};
+	const logoutUser = () => {
+	};
 
 	console.log("context", context);
 
@@ -105,14 +106,12 @@ const Navigation = ({ login, register, logout }) => {
 										Dropdown Item Text
 									</DropdownItem>
 									<DropdownItem divider />
-									<Link to="/">
 										<DropdownItem
 											onClick={logoutUser}
 											className="text-danger"
 										>
 											Logout
 										</DropdownItem>
-									</Link>
 								</DropdownMenu>
 							</UncontrolledDropdown>
 						</>

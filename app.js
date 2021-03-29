@@ -40,13 +40,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-var corsOptions = {
-  origin: allowedOrigin,
-  optionsSuccessStatus: 200,
-	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-	credentials: true 
-}
-app.use(cors(corsOptions))
+// var corsOptions = {
+//   origin: allowedOrigin,
+//   optionsSuccessStatus: 200,
+// 	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+// 	credentials: true 
+// }
+app.use(cors())
 
 // Model and Route
 app.use(api)

@@ -41,12 +41,12 @@ const Routes = (props) => {
 
 const PrivateRoute = ({children, ...rest}) => {
   let {user} = useContext(UserCtx)
-
+  console.log('ini user', user)
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        user || document.cookie ? (
+        user  ? (
           children
         ) : (
           <Redirect
