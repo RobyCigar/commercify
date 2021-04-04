@@ -102,18 +102,6 @@ const Register = (props) => {
 						Already have an account? <Link to="/login">Sign in</Link> now
 					</FormText>
 				</div>
-				<strong className="mx-5">or</strong>
-				<div className="d-flex">
-					<GoogleButton
-						className="my-5"
-						onClick={() =>
-							window.open(
-								"http://localhost:8000/api/auth/google/callback",
-								"_self"
-							)
-						}
-					/>
-				</div>
 			</div>
 			<Footer />
 		</>

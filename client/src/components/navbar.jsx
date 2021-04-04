@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { useCookies } from 'react-cookie'
 import {
 	Collapse,
 	Navbar,
@@ -19,12 +20,22 @@ import gear from "../assets/cogs.svg";
 
 const Navigation = ({ login, register, logout }) => {
 	const context = useContext(UserCtx);
+	const [cookies, setCookie, removeCookie] = useCookies()
 	const [isOpen, setIsOpen] = useState(false);
+	const [isLogout, setIsLogout] = useState(false)
 
 	const logoutUser = () => {
+		removeCookie('token')
+		setIsLogout(true)
 	};
 
-	console.log("context", context);
+	console.log("ucontext", context);
+
+	if(isLogout) {
+		return (
+			<Redirect to="login" />
+		)
+	}
 
 	const toggle = () => setIsOpen(!isOpen);
 	return (

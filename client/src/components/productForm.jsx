@@ -12,26 +12,25 @@ const ProductForm = (props) => {
     <Form>
       <FormGroup>
         <Label for="exampleEmail">Name</Label>
-        <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+        <Input type="email" name="email" id="exampleEmail" placeholder="Product name" />
       </FormGroup>
       <FormGroup>
         <Label for="exampleText">Description</Label>
-        <Input type="textarea" name="text" id="exampleText" />
+        <Input type="textarea" name="text" placeholder="Product Description" id="exampleText" />
       </FormGroup>
       <FormGroup>
         <Label for="exampleText">Quantity</Label>
-        <Input type="number" name="text" id="exampleText" />
+        <Input type="number" name="text" placeholder="Product Available" id="exampleText" />
       </FormGroup>
       <FormGroup>
-        <Label for="exampleText">Text Area</Label>
-        <Input type="textarea" name="text" id="exampleText" />
+        <Label for="exampleText">Price</Label>
+        <Input type="number" min="0" step="100" name="text" placeholder="Product Available" id="exampleText" />
       </FormGroup>
       <FormGroup>
         <Label for="exampleFile">Picture</Label>
         <Input type="file" name="file" id="exampleFile" />
         <FormText color="muted">
-          This is some placeholder block-level help text for the above input.
-          It's a bit lighter and easily wraps to a new line.
+          Please fill all the form above
         </FormText>
       </FormGroup>
       <Button>Submit</Button>

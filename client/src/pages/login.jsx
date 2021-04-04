@@ -34,6 +34,7 @@ const Login = (props) => {
 		const target = evt.target;
 		dispatch({ type: target.type, val: target.value });
 	};
+	console.log('ini user', user)
 
 	if(user) {
 		return (
@@ -48,7 +49,7 @@ const Login = (props) => {
 				<strong>Login</strong>
 			</h2>
 			<div className="d-flex my-5 flex-lg-row flex-column-reverse align-items-center">
-				<div className="w-75 mx-md-5 px-md-5 p-4 border-right border-left">
+				<div className="w-75 mx-md-5 px-md-5 p-4">
 					<Forms
 						email={true}
 						password={true}

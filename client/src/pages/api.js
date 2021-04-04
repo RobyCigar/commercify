@@ -1,6 +1,8 @@
 import axios from "axios";
 const devURL = "http://localhost:8000/api";
-const URL = "https://backend-mern-ecommerce.herokuapp.com/api"
+const prodURL = "https://backend-mern-ecommerce.herokuapp.com/api"
+
+const URL = devURL;
 
 export const login = async (data, changeState, setSuccess, setUser) => {
 	await axios({
@@ -63,3 +65,4 @@ export const register = async (data, setAlert, setSuccess) => {
 			console.log(error.config);
 		});
 };
+
