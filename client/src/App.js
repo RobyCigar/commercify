@@ -1,10 +1,8 @@
 import { createContext, useState } from "react";
-import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { CookiesProvider } from "react-cookie";
-import thunk from "redux-thunk";
 import Routes from "./pages/route";
-import store from "./store";
+import store from "./redux/store";
 
 export const UserCtx = createContext();
 

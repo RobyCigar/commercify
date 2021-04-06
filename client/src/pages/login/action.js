@@ -1,18 +1,19 @@
-export const mapStateToProps = (state) => {
-	const { username, password } = state.login
+import { LOGIN } from './constant'
 
-	return { username: username, password: password };
+export const mapStateToProps = (state) => {
+	return {...state.loginReducer};
 };
 
 export const mapDispatchToProps = (dispatch) => {
 	console.log("mapDispatchToProps", dispatch);
 
 	return {
-		handleUsername: payload => 
-			dispatch({type: "EMAIL", payload: payload.target.value}),
-		handlePassword: payload => 
-			dispatch({type: "PASSWORD", payload: payload.target.value}),
-		handleSubmit: (payload) =>
-			dispatch({ type: "LOGIN", payload: payload}),
+		handleChange: payload => {
+			console.log(payload.target.value)
+			return dispatch({type: payload.target.name, payload: payload.target.value})
+		},
+		handleSubmit: payload => {
+			dispatch({type: LOGIN, payload: payload})
+		},
 	};
 };

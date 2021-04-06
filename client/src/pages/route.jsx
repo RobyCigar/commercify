@@ -2,9 +2,7 @@ import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
-	Link,
   useRouteMatch,
-  useParams,
   Redirect
 } from 'react-router-dom'
 import { useCookies } from 'react-cookie'

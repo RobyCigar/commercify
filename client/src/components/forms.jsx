@@ -1,5 +1,4 @@
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
-import { useState } from "react";
 
 const Forms = ({
 	email,

@@ -1,7 +1,6 @@
-import { useReducer, useState, useEffect } from "react";
+import { useState } from "react";
 import {
 	FormText,
-	UncontrolledAlert,
 	Alert,
 	Button,
 	Modal,
@@ -19,11 +18,6 @@ import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import { register } from "../api";
 import successIcon from "../../assets/success.svg";
-import GoogleButton from "react-google-button";
-import {
-	FacebookLoginButton,
-	GoogleLoginButton,
-} from "react-social-login-buttons";
 
 
 

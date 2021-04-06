@@ -1,30 +1,22 @@
 import { FormText, Alert } from "reactstrap";
 import { Link, Redirect } from "react-router-dom";
-import { useState, useEffect, useContext, useReducer } from "react";
-import GoogleButton from "react-google-button";
+import { useContext } from "react";
+import { FacebookLoginButton, GoogleLoginButton, GithubLoginButton } from 'react-social-login-buttons';
 import { connect } from 'react-redux'
 import axios from "axios";
 
-import { mapDispatchToProps } from './action'
+import { mapStateToProps, mapDispatchToProps } from './action'
 
 import Forms from "../../components/forms";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import { UserCtx } from "../../App";
-import { login } from "../api";
 
-const Login = (props) => {
+const Login = ({email, password, alert, success, handleChange, handleSubmit}) => {
 	const { user, setUser } = useContext(UserCtx);
-	const [alert, setAlert] = useState(false);
-	const [success, setSuccess] = useState(false)
 
 	const onSubmit = async (evt) => {
 		evt.preventDefault();
-		setUser(login(null, setAlert ,setSuccess, setUser))
-	};
-
-	const onChange = (evt) => {
-		const target = evt.target;
 	};
 
 	if(user) {
@@ -32,31 +24,50 @@ const Login = (props) => {
 			<Redirect to="home"/>
 		)
 	}
+	
 	return (
 		<>
 			<Navbar register={true} />
 			{alert ? <Alert color="danger">{alert}</Alert> : null}
 			<h2 className="text-center text-dark my-5">
-				<strong>Login</strong>
+				<strong className="h2">Login</strong>
 			</h2>
 			<div className="d-flex my-5 flex-lg-row flex-column-reverse align-items-center">
-				<div className="w-75 mx-md-5 px-md-5 p-4">
+				<div className="w-75 px-md-5 p-4">
 					<Forms
 						email={true}
 						password={true}
 						multiple={false}
 						textArea={false}
-						onSubmit={onSubmit}
-						onChange={onChange}
+						onSubmit={handleSubmit}
+						onChange={handleChange}
 					/>
 					<FormText color="muted">
 						Don't have account? <Link to="/register">Sign up </Link>now
 					</FormText>
 				</div>
-				<h4>or</h4>
-				<div className="d-flex justify-content-center w-50">
-					<GoogleButton
-						className="my-5"
+				<h4 className="m-4">or</h4>
+				<div className="d-flex m-4 flex-column justify-content-center w-50">
+					<FacebookLoginButton
+						className="my-3"
+						onClick={() =>
+							window.open(
+								"http://localhost:8000/api/auth/google/callback",
+								"_self"
+							)
+						}
+					/>
+					<GoogleLoginButton
+						className="my-3"
+						onClick={() =>
+							window.open(
+								"http://localhost:8000/api/auth/google/callback",
+								"_self"
+							)
+						}
+					/>
+					<GithubLoginButton
+						className="my-3"
 						onClick={() =>
 							window.open(
 								"http://localhost:8000/api/auth/google/callback",
@@ -71,4 +82,4 @@ const Login = (props) => {
 	);
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

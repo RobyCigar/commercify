@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useCookies } from 'react-cookie'
 import {
@@ -19,7 +19,6 @@ import UserCtx from "../App";
 import gear from "../assets/cogs.svg";
 
 const Navigation = ({ login, register, logout }) => {
-	const context = useContext(UserCtx);
 	const [cookies, setCookie, removeCookie] = useCookies()
 	const [isOpen, setIsOpen] = useState(false);
 	const [isLogout, setIsLogout] = useState(false)
@@ -28,8 +27,6 @@ const Navigation = ({ login, register, logout }) => {
 		removeCookie('token')
 		setIsLogout(true)
 	};
-
-	console.log("ucontext", context);
 
 	if(isLogout) {
 		return (
