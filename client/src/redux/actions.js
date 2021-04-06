@@ -20,4 +20,12 @@ export const counter = state => ({
 	payload: { state }
 })
 
+export const login = state => {
+	console.log('stateee', state)
+	return ({
+		type: "LOGIN",
+		payload: {state}
+	})
+}
+
 export const setFilter = filter => ({ type: SET_FILTER, payload: { filter } });

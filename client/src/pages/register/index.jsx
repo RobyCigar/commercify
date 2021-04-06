@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
+import { connect } from "react-redux"
 
 import Forms from "../components/forms";
 import Navbar from "../components/navbar";
@@ -23,22 +24,7 @@ import {
 	GoogleLoginButton,
 } from "react-social-login-buttons";
 
-const reducer = (state, action) => {
-	switch (action.type) {
-		case "email":
-			return { ...state, email: action.val };
-		case "firstname":
-			return { ...state, firstname: action.val };
-		case "lastname":
-			return { ...state, lastname: action.val };
-		case "fullname":
-			return { ...state, fullname: action.val };
-		case "password":
-			return { ...state, password: action.val };
-		case "password1":
-			return { ...state, password1: action.val };
-	}
-};
+
 
 const Register = (props) => {
 	const [state, dispatch] = useReducer(reducer, {});
@@ -108,4 +94,4 @@ const Register = (props) => {
 	);
 };
 
-export default Register;
+export default connect(null, )(Register);

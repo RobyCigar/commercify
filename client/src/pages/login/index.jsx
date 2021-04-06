@@ -34,7 +34,6 @@ const Login = (props) => {
 		const target = evt.target;
 		dispatch({ type: target.type, val: target.value });
 	};
-	console.log('ini user', user)
 
 	if(user) {
 		return (
