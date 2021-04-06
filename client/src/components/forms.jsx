@@ -24,7 +24,7 @@ const Forms = ({
 					<Label for="exampleEmail">Email</Label>
 					<Input
 						type="email"
-						name="email"
+						name="EMAIL"
 						id="exampleEmail"
 						placeholder="Type your email"
 						onChange={onChange}
@@ -36,7 +36,7 @@ const Forms = ({
 					<Label for="exampleEmail">First Name</Label>
 					<Input
 						type="text"
-						name="firstname"
+						name="FIRST_NAME"
 						id="firstname"
 						placeholder="Type your first name"
 						onChange={onChange}
@@ -48,7 +48,7 @@ const Forms = ({
 					<Label for="exampleEmail">Last Name</Label>
 					<Input
 						type="text"
-						name="lastname"
+						name="LAST_NAME"
 						id="lastname"
 						placeholder="type your last name"
 						onChange={onChange}
@@ -60,7 +60,7 @@ const Forms = ({
 					<Label for="exampleEmail">Full Name</Label>
 					<Input
 						type="fullname"
-						name="fullname"
+						name="FULL_NAME"
 						id="fullname"
 						placeholder="type your full name"
 						onChange={onChange}
@@ -72,7 +72,7 @@ const Forms = ({
 					<Label for="examplePassword">Password</Label>
 					<Input
 						type="password"
-						name="password"
+						name="PASSWORD"
 						id="examplePassword"
 						placeholder="Your Password"
 						onChange={onChange}
@@ -84,7 +84,7 @@ const Forms = ({
 					<Label for="examplePassword">Verify Password</Label>
 					<Input
 						type="password"
-						name="password1"
+						name="PASSWORD_CHECK"
 						id="examplePassword"
 						placeholder="Type again"
 						onChange={onChange}

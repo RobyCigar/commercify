@@ -2,37 +2,29 @@ import { FormText, Alert } from "reactstrap";
 import { Link, Redirect } from "react-router-dom";
 import { useState, useEffect, useContext, useReducer } from "react";
 import GoogleButton from "react-google-button";
+import { connect } from 'react-redux'
 import axios from "axios";
 
-import Forms from "../components/forms";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
-import { UserCtx } from "../App";
-import { login } from "./api";
+import { mapDispatchToProps } from './action'
 
-const reducer = (state, action) => {
-	switch (action.type) {
-		case "email":
-			return { ...state, email: action.val };
-		case "password":
-			return { ...state, password: action.val };
-	}
-};
+import Forms from "../../components/forms";
+import Navbar from "../../components/navbar";
+import Footer from "../../components/footer";
+import { UserCtx } from "../../App";
+import { login } from "../api";
 
 const Login = (props) => {
 	const { user, setUser } = useContext(UserCtx);
-	const [state, dispatch] = useReducer(reducer, {});
 	const [alert, setAlert] = useState(false);
 	const [success, setSuccess] = useState(false)
 
 	const onSubmit = async (evt) => {
 		evt.preventDefault();
-		setUser(login(state, setAlert ,setSuccess, setUser))
+		setUser(login(null, setAlert ,setSuccess, setUser))
 	};
 
 	const onChange = (evt) => {
 		const target = evt.target;
-		dispatch({ type: target.type, val: target.value });
 	};
 
 	if(user) {
@@ -79,4 +71,4 @@ const Login = (props) => {
 	);
 };
 
-export default Login;
+export default connect(null, mapDispatchToProps)(Login);

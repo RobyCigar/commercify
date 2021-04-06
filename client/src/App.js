@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { CookiesProvider } from "react-cookie";
 import thunk from "redux-thunk";
 import Routes from "./pages/route";
-import store from "./redux/store";
+import store from "./store";
 
 export const UserCtx = createContext();
 

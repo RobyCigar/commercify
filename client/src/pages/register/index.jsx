@@ -13,11 +13,12 @@ import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux"
 
-import Forms from "../components/forms";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
-import { register } from "./api";
-import successIcon from "../assets/success.svg";
+import { mapDispatchToProps } from './action'
+import Forms from "../../components/forms";
+import Navbar from "../../components/navbar";
+import Footer from "../../components/footer";
+import { register } from "../api";
+import successIcon from "../../assets/success.svg";
 import GoogleButton from "react-google-button";
 import {
 	FacebookLoginButton,
@@ -27,23 +28,17 @@ import {
 
 
 const Register = (props) => {
-	const [state, dispatch] = useReducer(reducer, {});
 	const [alert, setAlert] = useState(false);
 	const [success, setSuccess] = useState(false);
 	const [modal, setModal] = useState(false);
 
 	const onSubmit = (evt) => {
 		evt.preventDefault();
-
-		if (state.password?.val !== state.password1?.val) {
-			setAlert("Password doesn't match");
-		}
-		register(state, setAlert, setModal);
+		register(null, setAlert, setModal);
 	};
 
 	const onChange = (evt) => {
 		const target = evt.target;
-		dispatch({ type: target.name, val: target.value });
 	};
 
 	const toggle = () => {
@@ -94,4 +89,4 @@ const Register = (props) => {
 	);
 };
 
-export default connect(null, )(Register);
+export default connect(null, mapDispatchToProps)(Register);

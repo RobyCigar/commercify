@@ -5,9 +5,18 @@ import {
 	FULLNAME,
 	PASSWORD,
 	CHECK_PASSWORD,
-} from "../actionTypes";
+} from "./constants";
 
-export default function reducer(state, action) {
+const initialState = {
+	email: "",
+	firstname: "",
+	lastname: "",
+	fullname: "",
+	password: "",
+	checkPassword: ""
+}
+
+export const registerReducer = (state = initialState, action) => {
 	const val = action.val;
 	switch (action.type) {
 		case EMAIL:
@@ -21,6 +30,8 @@ export default function reducer(state, action) {
 		case PASSWORD:
 			return { ...state, password: val };
 		case CHECK_PASSWORD:
-			return { ...state, password1: val };
+			return { ...state, checkPassword: val };
+		default:
+			return state;
 	}
 }

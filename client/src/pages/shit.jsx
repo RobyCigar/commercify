@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import { login } from "../redux/actions";
 
 const mapStateToProps = (state) => {
 	console.log("ini stat hereeee", state)
