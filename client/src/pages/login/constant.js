@@ -1,5 +1,0 @@
-export const EMAIL = "EMAIL"
-export const PASSWORD = "PASSWORD"
-export const LOGIN = "LOGIN"
-export const ALERT = "ALERT"
-export const SUCCESS = "SUCCESS"

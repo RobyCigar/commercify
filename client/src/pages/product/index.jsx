@@ -5,17 +5,13 @@ import Forms from '../../components/productForm'
 import {Button} from 'reactstrap'
 
 
-const AddProduct = (props) => {
+const Show = (props) => {
 	
   return (
     <div>
-    	<Navbar/>
-    	<h3 className="text-center text-primary my-5"> + Add Product</h3>
-    	<div className="my-5 mx-auto w-lg-75 w-50">
-    		<Forms/>
-    	</div>
+      <h1>Show Product</h1>
     </div>
   )
 }
 
-export default AddProduct;
+export default Show;

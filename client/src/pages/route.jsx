@@ -13,7 +13,6 @@ import Login from './login'
 import Register from './register'
 import Home from './home'
 import AddProduct from './product/add'
-import Shit from './shit'
 
 const Routes = (props) => {
   return (
@@ -34,9 +33,6 @@ const Routes = (props) => {
           <PrivateRoute path="/product">
             <Product/>
           </PrivateRoute>
-          <Route path="/shit">
-            <Shit/>
-          </Route>
    			</Switch>
    		</Router>	
   )
@@ -51,7 +47,7 @@ const PrivateRoute = ({children, ...rest}) => {
     <Route
       {...rest}
       render={({ location }) =>
-        user  ? (
+        cookie.token  ? (
           children
         ) : (
           <Redirect

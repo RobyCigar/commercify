@@ -1,0 +1,5 @@
+export { default as login } from './loginReducer'
+export { default as product } from './productReducer'
+export { default as register } from './registerReducer'
+export { default as user} from './userReducer'
+export { default as welcome} from './welcomeReducer'

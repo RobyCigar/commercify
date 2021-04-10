@@ -16,7 +16,7 @@ const initialState = {
 	checkPassword: ""
 }
 
-export const registerReducer = (state = initialState, action) => {
+const registerReducer = (state = initialState, action) => {
 	const val = action.val;
 	switch (action.type) {
 		case EMAIL:
@@ -35,3 +35,6 @@ export const registerReducer = (state = initialState, action) => {
 			return state;
 	}
 }
+
+
+export default registerReducer;
