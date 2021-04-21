@@ -1,4 +1,4 @@
-import { LOGIN_SUBMIT } from './constant'
+import { LOGIN_SUBMIT } from '../constant'
 
 const mapStateToProps = (state) => {
 	return {...state.loginReducer, authenticate: state.userReducer.authenticate};

@@ -1,9 +1,9 @@
 import {useReducer} from 'react'
 import { connect } from 'react-redux'
-import Navbar from '../../../components/navbar'
-import Forms from '../../../components/productForm'
+import Navbar from '/components/navbar'
+import Forms from '/components/productForm'
 import {Button} from 'reactstrap'
-import {mapDispatchToProps} from './action'
+import {mapDispatchToProps} from '/redux/actions'
 
 const AddProduct = ({handleChange, handleSubmit}) => {
 	

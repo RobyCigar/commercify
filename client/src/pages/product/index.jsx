@@ -1,7 +1,7 @@
 import {useReducer} from 'react'
 
-import Navbar from '../../components/navbar'
-import Forms from '../../components/productForm'
+import Navbar from 'components/navbar'
+import Forms from 'components/productForm'
 import {Button} from 'reactstrap'
 
 

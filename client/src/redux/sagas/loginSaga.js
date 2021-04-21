@@ -1,18 +1,17 @@
 import { takeEvery, call, put, select } from 'redux-saga/effects'
-import { USER } from '../user/constant'
-import { LOGIN_SUBMIT } from './constant'
-import { login } from '../api'
+import { USER } from '/redux/constants'
+import { LOGIN_SUBMIT } from '/redux/constants'
+import { login } from 'api'
 
 const getStateFromStore = state => {
 	const { email, password } = state.loginReducer
-
 	return {
 		email: email,
 		password: password
 	}
 }
 
-export function* submitLogin() {
+function* submitLogin() {
 	const data = yield select(getStateFromStore)
 	console.log("Ini data", data)
 	try {
@@ -24,6 +23,8 @@ export function* submitLogin() {
 	}
 }
 
-export function* watchLoginAsync() {
+function* watchLoginAsync() {
 	yield takeEvery( LOGIN_SUBMIT, submitLogin)
 }
+
+export default watchLoginAsync;

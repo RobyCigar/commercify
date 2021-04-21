@@ -12,12 +12,12 @@ import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux"
 
-import { mapDispatchToProps } from './action'
-import Forms from "../../components/forms";
-import Navbar from "../../components/navbar";
-import Footer from "../../components/footer";
-import { register } from "../api";
-import successIcon from "../../assets/success.svg";
+import { mapDispatchToProps } from '/redux/actions'
+import Forms from "/components/forms";
+import Navbar from "/components/navbar";
+import Footer from "/components/footer";
+import { register } from "/api/index";
+import successIcon from "/assets/success.svg";
 
 
 

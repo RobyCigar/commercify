@@ -1,8 +1,8 @@
 import { all, call, delay, put, takeEvery } from 'redux-saga/effects'
-import { watchLoginAsync } from '../pages/login/saga'
+import { login } from './sagas'
 
 export default function* rootSaga() {
 	yield all([
-		call(watchLoginAsync)
+		call(login)
 	])
 }
