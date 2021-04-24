@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Navbar from 'components/navbar'
 import Forms from 'components/productForm'
 import { Button } from 'reactstrap'
-import { addAction } from 'redux/actions'
+import { productAddAction } from 'redux/actions'
 
 const AddProduct = ({handleChange, handleSubmit}) => {
 	
@@ -18,4 +18,4 @@ const AddProduct = ({handleChange, handleSubmit}) => {
   )
 }
 
-export default connect(null, addAction.props)(AddProduct);
+export default connect(null, productAddAction.dispatch)(AddProduct);

@@ -1,8 +1,9 @@
-export {default as homeAction} from './homeAction';
-export {default as loginAction} from './loginAction';
-export {default as productAction} from './productAction';
-export {default as productAddAction} from './productAddAction';
-export {default as registerAction} from './registerAction';
-export {default as userAction} from './userAction';
-export {default as welcomeAction} from './welcomeAction';
-export {default as addAction} from './addAction';
+export {default as homeAction} from './home';
+export {default as loginAction} from './login';
+export {default as registerAction} from './register';
+
+export {default as productAction} from './product';
+export {default as productAddAction} from './productAdd';
+
+export {default as userAction} from './user';
+export {default as welcomeAction} from './welcome';
