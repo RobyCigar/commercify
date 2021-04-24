@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FormText, Alert } from "reactstrap";
 import { Link, Redirect } from "react-router-dom";
 import { FacebookLoginButton, GoogleLoginButton, GithubLoginButton } from 'react-social-login-buttons';
@@ -10,12 +10,27 @@ import Forms from "components/forms";
 import Navbar from "components/navbar";
 import Footer from "components/footer";
 
-const Login = ({email, authenticate, password, alert, success, handleChange, handleSubmit}) => {
-	const [ cookies ] = useCookies()
+const Login = ({email, password, alert, success, handleChange, handleSubmit, user, token}) => {
+	const [ cookies, setCookies ] = useCookies()
+	const [ auth, setAuth ] = useState(null)
+
+	useEffect(() => {
+		// store token to cookie hooks 
+		if(token) {
+			setCookies('token', token, { path: '/', sameSite: true})
+			console.log('cookies stored')
+		}
+	}, [token])
+	
+	if(cookies.token){
+		return (
+			<Redirect to="home"/>
+		)
+	}
 
 	const links = [FacebookLoginButton, GoogleLoginButton, GithubLoginButton]
-
-	if(authenticate) {
+	console.log('ini cookie', cookies)
+	if(0 == 1) {
 		return (
 			<Redirect to="/home"/>
 		)
@@ -66,4 +81,4 @@ const Login = ({email, authenticate, password, alert, success, handleChange, han
 	);
 };
 
-export default connect(loginAction.state, loginAction.props)(Login);
+export default connect(loginAction.state, loginAction.dispatch)(Login);

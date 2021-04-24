@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useCookies } from 'react-cookie'
 import { connect } from 'react-redux'
+import { TOKEN } from 'redux/constants'
 import {
 	Collapse,
 	Navbar,
@@ -20,31 +21,23 @@ import UserCtx from "../App";
 import gear from "../assets/cogs.svg";
 
 
-const mapStateToProps = (state) => {
-	console.log('navbar state', state.userReducer)
-	return {
-		user: state.userReducer
-	}
-}
-
 const mapDispatchToProps = (dispatch) => {
 	return {
 		handleLogout: (removeCookie, token) => {
 			removeCookie(token)
-			return dispatch({type: "USER", authenticate: false})
+			return dispatch({type: TOKEN, payload: null})
 		}
 	}
 }
 
 
-const Navigation = ({ login, register, logout, user, handleLogout }) => {
+const Navigation = ({ login, register, logout, handleLogout }) => {
 	const [cookies, setCookie, removeCookie] = useCookies()
 	const [isOpen, setIsOpen] = useState(false);
 
 	const logoutUser = () => {
 		handleLogout(removeCookie, "token")
 	};
-	console.log("ini user", user,  handleLogout)
 
 	const toggle = () => setIsOpen(!isOpen);
 	return (
@@ -142,4 +135,4 @@ const Navigation = ({ login, register, logout, user, handleLogout }) => {
 	);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
+export default connect(null, mapDispatchToProps)(Navigation);

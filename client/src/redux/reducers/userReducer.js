@@ -5,7 +5,6 @@ const initialState = {
 	id: "",
 	lastName: "",
 	role: "",
-	authenticate: false,
 	token: null
 }
 
@@ -15,8 +14,7 @@ const userReducer = (state = initialState, action) => {
 			return {...state, token: action.payload}
 		}
 		case USER: {
-			console.log("user here", action)
-			return {...state, ...action.payload, authenticate: action.authenticate}
+			return {...state, ...action.payload}
 		}
 		default:
 			return state

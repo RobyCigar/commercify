@@ -1,18 +1,18 @@
 import { LOGIN_SUBMIT } from 'redux/constants'
 
 const mapStateToProps = (state) => {
-	return {...state.loginReducer, authenticate: state.userReducer.authenticate};
+	console.log('statee', state)
+	return {...state.login, user: state.user.email, token: state.user.token};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		handleChange: payload => {
-			console.log(payload.target.value)
 			return dispatch({type: payload.target.name, payload: payload.target.value})
 		},
 		handleSubmit: evt => {
 			evt.preventDefault()
-			dispatch({type: LOGIN_SUBMIT})
+			return dispatch({type: LOGIN_SUBMIT})
 		},
 	};
 };

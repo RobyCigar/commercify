@@ -4,7 +4,7 @@ import { LOGIN_SUBMIT } from 'redux/constants'
 import { login } from 'api'
 
 const getStateFromStore = state => {
-	const { email, password } = state.loginReducer
+	const { email, password } = state.login
 	return {
 		email: email,
 		password: password
@@ -24,6 +24,7 @@ function* submitLogin() {
 }
 
 function* watchLoginAsync() {
+	console.log('watchLoginAsync')
 	yield takeEvery( LOGIN_SUBMIT, submitLogin)
 }
 

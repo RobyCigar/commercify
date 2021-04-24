@@ -1,4 +1,4 @@
-import { LOGIN_EMAIL, LOGIN_PASSWORD, LOGIN_ALERT, LOGIN_SUCCESS, LOGIN_SUBMIT } from 'redux/constants'
+import { EMAIL, PASSWORD, LOGIN_ALERT, LOGIN_SUCCESS, LOGIN_SUBMIT } from 'redux/constants'
 
 const initialState = {
 	email: "",
@@ -9,15 +9,19 @@ const initialState = {
 
 const loginReducer = (state = initialState, action) => {
 	console.log('aksi', action)
+	console.log("state", state)
 	switch (action.type) {
-		case LOGIN_EMAIL:
-			return { ...state, email: action.payload };
-		case LOGIN_PASSWORD:
+		case EMAIL: {
+			console.log('here in email')
+			return { ...state, email: action.payload };}
+		case PASSWORD:
 			return { ...state, password: action.payload };
-		case LOGIN_ALERT: 
+		case LOGIN_ALERT:  
 			return { ...state, alert: action.payload}
-		case LOGIN_SUBMIT: 
+		case LOGIN_SUBMIT: {
+			console.log('login')
 			return { ...state, submit: true}
+		}
 		default: 
 			return state
 	}

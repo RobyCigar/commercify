@@ -17,7 +17,7 @@ export const login = async (data) => {
 			const jwt = res.data.token;
 			console.log("ini response", res);
 			document.cookie = `token=${jwt};SameSite=None;Secure`;
-			return res.data.user;
+			return {...res.data.user, token: jwt};
 		})
 		.catch(function (error) {
 			if (error.response) {
