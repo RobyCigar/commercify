@@ -13,7 +13,7 @@ import {
   PRODUCT_ADD_PICTURE,
   PRODUCT_ADD_QUANTITY,
   PRODUCT_ADD_SUBMIT
-} from "./constant";
+} from "redux/constants";
 
 const ProductForm = ({handleChange, handleSubmit}) => {
   return (

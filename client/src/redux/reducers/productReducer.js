@@ -5,7 +5,7 @@ import {
 	PRODUCT_ADD_PICTURE,
 	PRODUCT_ADD_QUANTITY,
 	PRODUCT_ADD_SUBMIT
-} from "/redux/constants";
+} from "redux/constants";
 
 const initialState = {
 	name: "",

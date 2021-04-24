@@ -5,7 +5,7 @@ import {
 	FULLNAME,
 	PASSWORD,
 	CHECK_PASSWORD,
-} from "/redux/constants";
+} from "redux/constants";
 
 const initialState = {
 	email: "",

@@ -4,11 +4,11 @@ import { Link, Redirect } from "react-router-dom";
 import { FacebookLoginButton, GoogleLoginButton, GithubLoginButton } from 'react-social-login-buttons';
 import { connect } from 'react-redux'
 import { useCookies } from 'react-cookie'
-import { mapStateToProps, mapDispatchToProps } from "/redux/actions"
+import { loginAction } from "redux/actions"
 
-import Forms from "/components/forms";
-import Navbar from "/components/navbar";
-import Footer from "/components/footer";
+import Forms from "components/forms";
+import Navbar from "components/navbar";
+import Footer from "components/footer";
 
 const Login = ({email, authenticate, password, alert, success, handleChange, handleSubmit}) => {
 	const [ cookies ] = useCookies()
@@ -66,4 +66,4 @@ const Login = ({email, authenticate, password, alert, success, handleChange, han
 	);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(loginAction.state, loginAction.props)(Login);

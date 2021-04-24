@@ -5,3 +5,4 @@ export {default as productAddAction} from './productAddAction';
 export {default as registerAction} from './registerAction';
 export {default as userAction} from './userAction';
 export {default as welcomeAction} from './welcomeAction';
+export {default as addAction} from './addAction';

@@ -1,4 +1,4 @@
-import { USER, TOKEN } from '/redux/constants'
+import { USER, TOKEN } from 'redux/constants'
 const initialState = {
 	email: "",
 	firstName: "",

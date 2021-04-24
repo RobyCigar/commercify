@@ -12,12 +12,12 @@ import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux"
 
-import { mapDispatchToProps } from '/redux/actions'
-import Forms from "/components/forms";
-import Navbar from "/components/navbar";
-import Footer from "/components/footer";
-import { register } from "/api/index";
-import successIcon from "/assets/success.svg";
+import { registerAction } from 'redux/actions'
+import Forms from "components/forms";
+import Navbar from "components/navbar";
+import Footer from "components/footer";
+import { register } from "api";
+import successIcon from "assets/success.svg";
 
 
 
@@ -83,4 +83,4 @@ const Register = (props) => {
 	);
 };
 
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(null, registerAction.props)(Register);

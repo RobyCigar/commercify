@@ -1,4 +1,4 @@
-import { PRODUCT_ADD_SUBMIT } from '../constant'
+import { PRODUCT_ADD_SUBMIT } from 'redux/constants'
 
 const mapDispatchToProps = (dispatch) => {
 	return {

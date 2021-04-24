@@ -1,6 +1,6 @@
 import { takeEvery, call, put, select } from 'redux-saga/effects'
-import { USER } from '/redux/constants'
-import { LOGIN_SUBMIT } from '/redux/constants'
+import { USER } from 'redux/constants'
+import { LOGIN_SUBMIT } from 'redux/constants'
 import { login } from 'api'
 
 const getStateFromStore = state => {
