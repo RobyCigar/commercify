@@ -1,6 +1,6 @@
 import axios from "axios";
 // const devURL = "http://localhost:8000/api";
-const prodURL = "https://backend-mern-ecommerce.herokuapp.com/api";
+const prodURL = process.env.API_ENDPOINT_PROD;
 
 const URL = prodURL;
 

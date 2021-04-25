@@ -1,1 +1,3 @@
-export { default as login } from './loginSaga'
+export { default as login } from './login'
+export { default as register } from './register'
+export { default as productAdd } from './productAdd'

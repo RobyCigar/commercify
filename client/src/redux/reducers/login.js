@@ -8,20 +8,15 @@ const initialState = {
 }
 
 const loginReducer = (state = initialState, action) => {
-	console.log('aksi', action)
-	console.log("state", state)
 	switch (action.type) {
-		case EMAIL: {
-			console.log('here in email')
-			return { ...state, email: action.payload };}
+		case EMAIL:
+			return { ...state, email: action.payload };
 		case PASSWORD:
 			return { ...state, password: action.payload };
 		case LOGIN_ALERT:  
 			return { ...state, alert: action.payload}
-		case LOGIN_SUBMIT: {
-			console.log('login')
+		case LOGIN_SUBMIT: 
 			return { ...state, submit: true}
-		}
 		default: 
 			return state
 	}

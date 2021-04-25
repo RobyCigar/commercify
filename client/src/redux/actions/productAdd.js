@@ -8,6 +8,7 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		handleSubmit: evt => {
 			evt.preventDefault()
+      console.log("submitted")
 			return dispatch({type: PRODUCT_ADD_SUBMIT})
 		}
 	}

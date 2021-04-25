@@ -4,7 +4,7 @@ const prodURL = "https://backend-mern-ecommerce.herokuapp.com/api";
 
 const URL = prodURL;
 
-export const addProduct = async (data, token) => {
+export const productAdd = async (data, token) => {
 	return await axios({
 		method: "post",
 		data: data,
