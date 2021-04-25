@@ -1,8 +1,5 @@
 import axios from "axios";
-// const devURL = "http://localhost:8000/api";
-const prodURL = "https://backend-mern-ecommerce.herokuapp.com/api";
-
-const URL = prodURL;
+import { URL } from './index'
 
 export const productAdd = async (data, token) => {
 	return await axios({

@@ -1,8 +1,4 @@
 export * from './auth'
 export * from './product'
 
-if(process.env.PROD) {
-  export const API_PROD = process.env.API_PROD;
-} else {
-  export const API_DEV = process.env.API_DEV;
-}
+export const URL = process.env.REACT_APP_API_PROD;

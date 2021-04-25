@@ -9,6 +9,7 @@ export const UserCtx = createContext();
 function App() {
   const [user, setUser] = useState(false);
   const value = { user, setUser };
+  console.log(process.env)
   return (
     <CookiesProvider>
       <Provider store={store}>
