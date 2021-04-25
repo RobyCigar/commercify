@@ -5,7 +5,7 @@ export const productAdd = async (data, token) => {
 	return await axios({
 		method: "post",
 		data: data,
-		url: `${URL}/product/`,
+		url: `${URL}/product/add`,
 		headers: {
 			"Access-Control-Allow-Origin": "http://localhost:3000",
 			"Authorization": token
