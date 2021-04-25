@@ -13,6 +13,21 @@ const keys = require("../../config/keys");
 
 const { secret, tokenLife } = keys.jwt;
 
+
+/*
+
+post "/login"
+post "/register"
+post "/forgot"
+post "/reset/:token"
+post "/reset"
+get "/google"
+get "/google/callback"
+
+*/
+
+
+
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
@@ -329,7 +344,6 @@ router.get(
       <script>
         // Save JWT to cookie
         document.cookie = 'token=${jwt};'
-        console.log('here bitch');
         // Redirect browser to root of application
         window.open('http://localhost:3000/home', '_self')
       </script>
@@ -341,43 +355,5 @@ router.get(
   }
 );
 
-
-// router.get(
-//   "/facebook",
-//   passport.authenticate("facebook", {
-//     session: false,
-//     scope: ["public_profile", "email"],
-//   })
-// );
-
-// router.get(
-//   "/facebook/callback",
-//   passport.authenticate("facebook", {
-//     failureRedirect: "/",
-//     session: false,
-//   }),
-//   (req, res) => {
-//     const payload = {
-//       id: req.user.id,
-//     };
-
-//     jwt.sign(payload, secret, { expiresIn: tokenLife }, (err, token) => {
-//       const jwt = `Bearer ${token}`;
-
-//       const htmlWithEmbeddedJWT = `
-//     <html>
-//       <script>
-//         // Save JWT to localStorage
-//         window.localStorage.setItem('token', '${jwt}');
-//         // Redirect browser to root of application
-//         window.location.href = '/auth/success';
-//       </script>
-//     </html>       
-//     `;
-
-//       res.send(htmlWithEmbeddedJWT);
-//     });
-//   }
-// );
 
 module.exports = router;

@@ -1,4 +1,4 @@
-xports.resetEmail = (host, resetToken) => {
+exports.resetEmail = (host, resetToken) => {
   const message = {
     subject: 'Reset Password',
     text:
