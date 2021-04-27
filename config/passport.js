@@ -17,14 +17,16 @@ const opts = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: secret
 };
+// use header as Authentication: "Bearer ${token}"
 
 passport.use(
   new JwtStrategy(opts, (payload, done) => {
-    console.log('fuckkk')
+    console.log('payload', payload)
     User.findById(payload.id)
       .then(user => {
         if (user) {
-          return done(null, user);
+          console.log('here user', user)
+          return done(null, user, {msg: "Fuck"});
         }
 
         return done(null, false);
