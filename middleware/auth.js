@@ -1,8 +1,11 @@
 const passport = require('passport');
 
 function auth(request, response, next) {
-	console.log(request.headers)
+	console.log('head', request.headers)
+	console.log('body', request.body)
     passport.authenticate('jwt', { session: false, }, async (error, token) => {
+    	console.log('token', token)
+    	console.log('err', error)
         if (error || !token) {
             response.status(401).json({ message: 'You fuckin dumb' });
         } 

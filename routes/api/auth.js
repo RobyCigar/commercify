@@ -46,7 +46,6 @@ router.post("/login", (req, res) => {
         .send({ error: "No user found for this email address. try login with google" });
     }
 
-    console.log('pw', password, user.password)
     bcrypt.compare(password, user.password).then((isMatch) => {
       console.log('here')
       if (isMatch) {
@@ -98,7 +97,7 @@ router.post("/register", (req, res) => {
   }
 
   if (!firstName || !lastName) {
-    return res.status(400).json({ error: "You must enter your full name." });
+    return res.status(400).json({ error: "You must enter firstName and lastName." });
   }
 
   if (!password) {
