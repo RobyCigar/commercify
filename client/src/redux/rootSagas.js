@@ -1,9 +1,10 @@
-import { all, call, delay, put, takeEvery } from 'redux-saga/effects'
-import { login, productAdd } from './sagas'
+import { all, call } from 'redux-saga/effects'
+import { login, productAdd, user } from './sagas'
 
 export default function* rootSaga() {
 	yield all([
 		call(login),
-    call(productAdd)
+    call(productAdd),
+    call(user),
 	])
 }

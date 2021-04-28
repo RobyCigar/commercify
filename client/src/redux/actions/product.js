@@ -5,6 +5,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
+	//return all product
 }
 
 export default {

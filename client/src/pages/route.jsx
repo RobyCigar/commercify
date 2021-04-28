@@ -6,15 +6,27 @@ import {
   Redirect
 } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
-import { useContext } from 'react'
-import { UserCtx } from '../App'
+import { useEffect } from 'react'
+import { connect } from 'react-redux'
+
+
+// components
+import { userAction } from 'redux/actions'
 import LandingPage from './welcome'
 import Login from './login'
 import Register from './register'
 import Home from './home'
 import AddProduct from './product/add'
 
-const Routes = (props) => {
+const Routes = ({handleUser}) => {
+  const [cookies, setCookie] = useCookies()
+
+  useEffect(() => {
+    if(cookies.token) { 
+      handleUser(cookies.token)
+    }
+  }, [handleUser])
+
   return (
    		<Router>
    			<Switch>
@@ -39,10 +51,8 @@ const Routes = (props) => {
 }
 
 const PrivateRoute = ({children, ...rest}) => {
-  const {user, setUser} = useContext(UserCtx)
   const [cookie, setCookie] = useCookies()
 
-  console.log('ini cookieeeee', cookie )
   return (
     <Route
       {...rest}
@@ -75,4 +85,4 @@ const Product = () => {
 }
 
 
-export default Routes;
+export default connect(null, userAction.dispatch)(Routes);
