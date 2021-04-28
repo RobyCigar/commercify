@@ -1,5 +1,9 @@
 import { PRODUCT_ADD_SUBMIT } from 'redux/constants'
 
+const mapStateToProps = ({alert}) => {
+	return {message: alert.message};
+}
+
 const mapDispatchToProps = (dispatch) => {
 	return {
 		handleChange: evt => {
@@ -15,5 +19,6 @@ const mapDispatchToProps = (dispatch) => {
 } 
 
 export default {
+	state: mapStateToProps,
 	dispatch: mapDispatchToProps
 }

@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
-import { login, product, register, user, welcome } from './reducers'
+import { alert, login, product, register, user, welcome } from './reducers'
 
 
 export default combineReducers({
+	alert,
 	login,
 	register,
 	user,

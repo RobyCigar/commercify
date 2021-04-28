@@ -29,12 +29,6 @@ const Login = ({email, password, alert, success, handleChange, handleSubmit, use
 	}
 
 	const links = [FacebookLoginButton, GoogleLoginButton, GithubLoginButton]
-	console.log('ini cookie', cookies)
-	if(0 == 1) {
-		return (
-			<Redirect to="/home"/>
-		)
-	}
 
 	return (
 		<>

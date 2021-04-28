@@ -3,8 +3,8 @@ import { login, productAdd, user } from './sagas'
 
 export default function* rootSaga() {
 	yield all([
-		call(login),
-    call(productAdd),
     call(user),
+    call(productAdd),
+		call(login),
 	])
 }

@@ -1,3 +1,4 @@
+export { default as alert } from './alert'
 export { default as login } from './login'
 export { default as product } from './product'
 export { default as register } from './register'

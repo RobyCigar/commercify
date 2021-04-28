@@ -1,14 +1,11 @@
 import axios from 'axios'
 import {URL} from './index'
 
-export const user = async (token) => {
+export const fetchUser = async (token) => {
   return await axios({
     method: "get",
     Authorization: token,
-    url: `${URL}/user`,
-    headers: {
-      "Access-Control-Allow-Origin": "http://localhost:3000",
-    },
+    url: `${URL}/user`
   })
     .then((res) => {
       console.log(res)
