@@ -17,10 +17,10 @@ import {
 
 const ProductForm = ({handleChange, handleSubmit}) => {
   return (
-    <Form>
+    <Form onSubmit={handleSubmit} method="POST" encType="multipart/form-data">
       <FormGroup>
         <Label for="EMAIL">Name</Label>
-        <Input onChange={handleChange} type="email" name={PRODUCT_ADD_NAME} id="exampleEmail" placeholder="Product name" />
+        <Input onChange={handleChange} type="text" name={PRODUCT_ADD_NAME} placeholder="Product name" />
       </FormGroup>
       <FormGroup>
         <Label for="DESCRIPTION">Description</Label>
@@ -36,12 +36,12 @@ const ProductForm = ({handleChange, handleSubmit}) => {
       </FormGroup>
       <FormGroup>
         <Label for="PICTURE">Picture</Label>
-        <Input onChange={handleChange} type="file" name={PRODUCT_ADD_PICTURE} id="exampleFile" />
+        <Input onChange={handleChange} type="file" name={PRODUCT_ADD_PICTURE}/>
         <FormText color="muted">
           Please fill all the form above
         </FormText>
       </FormGroup>
-      <Button type="button" onClick={handleSubmit}>Submit</Button>
+      <Button type="submit">Submit</Button>
     </Form>
   )
 }

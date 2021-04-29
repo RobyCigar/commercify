@@ -17,8 +17,8 @@ import {
 	NavbarText,
 	Button,
 } from "reactstrap";
-import UserCtx from "../App";
 import gear from "../assets/cogs.svg";
+import PropTypes from 'prop-types'
 
 
 const mapDispatchToProps = (dispatch) => {
@@ -134,5 +134,9 @@ const Navigation = ({ login, register, logout, handleLogout }) => {
 		</div>
 	);
 };
+
+Navigation.propTypes = {
+login: PropTypes.bool, register: PropTypes.bool, logout: PropTypes.bool, handleLogout: PropTypes.bool
+}
 
 export default connect(null, mapDispatchToProps)(Navigation);

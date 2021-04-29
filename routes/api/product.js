@@ -9,7 +9,16 @@ const Category = require('../../models/category');
 const auth = require('../../middleware/auth');
 const role = require('../../middleware/role');
 
-const storage = multer.memoryStorage();
+// Configure file upload
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./uploads");
+  },
+  filename: function (req, file, cb) {
+    cb(null, `${Date.now()}.png`);
+  },
+});
+
 const upload = multer({ storage });
 
 /*
@@ -32,8 +41,9 @@ router.post(
   '/add',
   auth,
   role.checkRole(role.ROLES.Admin, role.ROLES.Merchant),
-  upload.single('image'),
+  upload.any(),
   async (req, res) => {
+    console.log(req)
     try {
       const name = req.body.name;
       const description = req.body.description;
@@ -41,8 +51,8 @@ router.post(
       const price = req.body.price;
       const isActive = req.body.isActive;
       const brand = req.body.brand != 0 ? req.body.brand : null;
-      const image = req.file;
-
+      const image = "";
+      console.log('ini request', req)
       if (!description || !name) {
         return res
           .status(400)
@@ -57,7 +67,7 @@ router.post(
         return res.status(400).json({ error: 'You must enter a price.' });
       }
 
-      let imageUrl = '';
+      let imageUrl = "";
       let imageKey = '';
 
 
@@ -80,6 +90,7 @@ router.post(
         product: savedProduct
       });
     } catch (error) {
+      console.log(error)
       return res.status(400).json({
         error: 'Your request could not be processed. Please try again.'
       });

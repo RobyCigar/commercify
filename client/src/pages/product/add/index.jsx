@@ -1,4 +1,4 @@
-import {useReducer} from 'react'
+import { useReducer } from 'react'
 import { connect } from 'react-redux'
 import Navbar from 'components/navbar'
 import Forms from 'components/productForm'

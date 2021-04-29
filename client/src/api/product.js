@@ -25,7 +25,7 @@ export const product = async () => {
 
 export const productAdd = async (data, token) => {
 	let Data = new FormData();
-	console.log(data)
+	console.log(data.picture)
 	Data.append('image', data.picture)
 
 	return await axios({

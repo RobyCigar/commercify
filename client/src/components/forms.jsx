@@ -1,4 +1,6 @@
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import PropTypes from 'prop-types'
+
 
 const Forms = ({
 	email,
@@ -17,7 +19,7 @@ const Forms = ({
 	onChange
 }) => {
 	return (
-		<Form onSubmit={onSubmit}>
+		<Form method="POST" onSubmit={onSubmit} encType="multipart/form-data">
 			{email ? (
 				<FormGroup>
 					<Label for="exampleEmail">Email</Label>
@@ -172,5 +174,22 @@ const Forms = ({
 		</Form>
 	);
 };
+
+Forms.propTypes = {
+	email: PropTypes.bool,
+	password: PropTypes.bool ,
+	passwordVerify: PropTypes.bool,
+	textArea: PropTypes.bool,
+	select: PropTypes.bool,
+	multiple: PropTypes.bool,
+	file: PropTypes.bool,
+	radio: PropTypes.bool,
+	checkbox: PropTypes.bool,
+	firstName: PropTypes.bool,
+	lastName: PropTypes.bool,
+	fullName: PropTypes.bool,
+	onSubmit: PropTypes.bool,
+	onChange: PropTypes.bool
+}
 
 export default Forms;

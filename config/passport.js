@@ -21,12 +21,11 @@ const opts = {
 
 passport.use(
   new JwtStrategy(opts, (payload, done) => {
-    console.log('payload', payload)
     User.findById(payload.id)
       .then(user => {
         if (user) {
-          console.log('here user', user)
-          return done(null, user, {msg: "Fuck"});
+          // send user to next request so it'll be req.user
+          return done(null, user);
         }
 
         return done(null, false);

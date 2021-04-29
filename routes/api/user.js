@@ -41,7 +41,6 @@ router.get(
 );
 
 router.get('/', auth, async (req, res) => {
-  console.log('eeeeeeeee req', req.body, req.headers, req.user)
   try {
     const user = req.user._id;
 
