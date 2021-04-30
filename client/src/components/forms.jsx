@@ -35,7 +35,7 @@ const Forms = ({
 			) : null}
 			{FIRSTNAME ? (
 				<FormGroup>
-					<Label for="exampleEmail">First Name</Label>
+					<Label>First Name</Label>
 					<Input
 						type="text"
 						name={FIRSTNAME}
@@ -46,8 +46,9 @@ const Forms = ({
 			) : null}
 			{LASTNAME ? (
 				<FormGroup>
-					<Label for="exampleEmail">Last Name</Label>
+					<Label>Last Name</Label>
 					<Input
+						type="text"
 						name={LASTNAME}
 						placeholder="type your last name"
 						onChange={ONCHANGE}

@@ -30,7 +30,7 @@ export const productAdd = async (data, token) => {
 
 	return await axios({
 		method: "post",
-		data: Data,
+		data: {Data, ...data},
 		url: `${URL}/product/add`,
 		headers: {
 			"Authorization": token,
@@ -47,7 +47,7 @@ export const productAdd = async (data, token) => {
 				console.log(error.response.data);
 				console.log(error.response.status);
 				console.log(error.response.headers);
-				return error.response.data.error
+				return error.response.data;
 			} else if (error.request) {
 				console.log(error.request);
 			} else {

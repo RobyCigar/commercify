@@ -1,6 +1,6 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects'
 import { productAdd } from 'api'
-import { PRODUCT_ADD_SUBMIT, ALERT } from 'redux/constants'
+import { PRODUCT_ADD_SUBMIT, PRODUCT_ADD_ALERT } from 'redux/constants'
 
 const getProductFormFromStore = state => {
   return {...state.product}
@@ -15,10 +15,10 @@ function* submitProduct() {
   const token = yield select(getTokenFromStore)
   try {
     const message = yield call(productAdd, data, token)
-    yield put({type: ALERT, payload: message})
+    yield put({type: PRODUCT_ADD_ALERT, payload: message})
   } catch (e) {
     console.log('ini err', e)
-    yield put({type: ALERT, payload: null})
+    yield put({type: PRODUCT_ADD_ALERT, payload: "Product failed to add"})
   }
 }
 

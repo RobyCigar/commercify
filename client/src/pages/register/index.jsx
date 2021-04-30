@@ -30,14 +30,12 @@ import successIcon from "assets/success.svg";
 
 
 
-const Register = ({handleSubmit, handleChange, password, passwordCheck, alert, handleAlert}) => {
+const Register = ({handleSubmit, handleChange, password, passwordCheck, alert}) => {
 
-	useEffect(() => {
-		if(password !== passwordCheck) {
-			handleAlert("Password doesn't match")
-		}
-
-	}, [handleSubmit])
+	const submit = (evt) => {
+		evt.preventDefault();
+		handleSubmit(password, passwordCheck)
+	}
 
 	return (
 		<>
@@ -55,7 +53,7 @@ const Register = ({handleSubmit, handleChange, password, passwordCheck, alert, h
 						PASSWORD={PASSWORD}
 						PASSWORD_CHECK={PASSWORD_CHECK}
 						ONCHANGE={handleChange}
-						ONSUBMIT={handleSubmit}
+						ONSUBMIT={submit}
 					/>
 					<FormText>
 						Already have an account? <Link to="/login">Sign in</Link> now

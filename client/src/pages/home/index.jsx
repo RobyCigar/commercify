@@ -2,14 +2,18 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
 import { Button } from "reactstrap";
+import { useCookies } from "react-cookie"
 
-import { productAddAction } from "redux/actions"
+import { homeAction } from "redux/actions"
 import Footer from "components/footer";
 import Navbar from "components/navbar";
+import {fetchUser} from "api";
 
-const Home = (props) => {
+const Home = () => {
+	const [cookie] = useCookies();
+
 	useEffect(()=> {
-
+		fetchUser(cookie.token)
 	}, [])
 	return (
 		<>
@@ -22,4 +26,4 @@ const Home = (props) => {
 	);
 };
 
-export default connect(null, productAddAction)(Home);
+export default connect(homeAction.state, null)(Home);

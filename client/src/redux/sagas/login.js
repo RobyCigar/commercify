@@ -24,7 +24,6 @@ function* submitLogin() {
 }
 
 function* watchLoginAsync() {
-	console.log('watchLoginAsync')
 	yield takeEvery( LOGIN_SUBMIT, submitLogin)
 }
 

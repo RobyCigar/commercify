@@ -14,13 +14,12 @@ const mapDispatchToProps = dispatch => {
 		handleChange: evt => {
 			return dispatch({ type: evt.target.name, payload: evt.target.value})
 		},
-		handleSubmit: evt => {
-			evt.preventDefault()
+		handleSubmit: (password, passwordCheck) => {
+			if(password !== passwordCheck) {
+				return dispatch({type: REGISTER_ALERT, payload: "Password doesn't match!"})
+			}
 			return dispatch({ type: REGISTER_SUBMIT })
 		},
-		handleAlert: payload => {
-			return dispatch({ type: REGISTER_ALERT, payload: payload })
-		}
 	}
 }
 

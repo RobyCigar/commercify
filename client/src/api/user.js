@@ -4,8 +4,10 @@ import {URL} from './index'
 export const fetchUser = async (token) => {
   return await axios({
     method: "get",
-    Authorization: token,
-    url: `${URL}/user`
+    url: `${URL}/user`,
+    headers: {
+      Authorization: token
+    }
   })
     .then((res) => {
       console.log(res)

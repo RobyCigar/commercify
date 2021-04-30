@@ -4,35 +4,40 @@ import {
 	PRODUCT_ADD_PRICE,
 	PRODUCT_ADD_PICTURE,
 	PRODUCT_ADD_QUANTITY,
-	PRODUCT_ADD_SUBMIT
+	PRODUCT_ADD_SUBMIT,
+	PRODUCT_ADD_ALERT,
 } from "redux/constants";
 
 const initialState = {
 	name: "",
 	description: "",
-	picture: "",
+	picture: {},
 	quantity: 0,
 };
 
 const productReducer = (state = initialState, action) => {
+	const payload = action.payload
 	switch (action.type) {
 		case PRODUCT_ADD_NAME: {
-			return { ...state, name: action.payload };
+			return { ...state, name: payload };
 		}
 		case PRODUCT_ADD_DESCRIPTION: {
-			return { ...state, description: action.payload };
+			return { ...state, description: payload };
 		}
 		case PRODUCT_ADD_PRICE: {
-			return { ...state, price: action.payload };
+			return { ...state, price: payload };
 		}
 		case PRODUCT_ADD_PICTURE: {
-			return { ...state, picture: action.payload };
+			return { ...state, picture: payload };
 		}
 		case PRODUCT_ADD_QUANTITY: {
-			return { ...state, quantity: action.payload };
+			return { ...state, quantity: payload };
 		}
 		case PRODUCT_ADD_SUBMIT: {
 			return { ...state, submit: true}
+		}
+		case PRODUCT_ADD_ALERT: {
+			return { ...state, alert: payload}
 		}
 		default:
 			return state;

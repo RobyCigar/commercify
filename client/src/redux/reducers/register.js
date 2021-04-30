@@ -11,9 +11,8 @@ import {
 
 const initialState = {
 	email: "",
-	firstname: "",
-	lastname: "",
-	fullname: "",
+	firstName: "",
+	lastName: "",
 	password: "",
 	passwordCheck: "",
 	alert: null

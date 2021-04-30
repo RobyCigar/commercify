@@ -33,27 +33,23 @@ export const login = async (data) => {
 export const register = async (data, setAlert, setSuccess) => {
 	const { email, firstname, lastname, password } = data;
 
-	await axios({
+	return await axios({
 		method: "post",
 		url: `${URL}/auth/register`,
-		data: {
-			email: email,
-			firstName: firstname,
-			lastName: lastname,
-			password: password,
-		},
+		data: data,
 	})
 		.then((res) => {
 			const jwt = res.data.token;
 			document.cookie = `token=${jwt};`;
-			setSuccess(true);
+			console.log(res)
+			return res.data.success;
 		})
 		.catch(function (error) {
 			if (error.response) {
-				setAlert(error.response.data.error);
 				console.log(error.response.data);
 				console.log(error.response.status);
 				console.log(error.response.headers);
+				return error.response.data.error
 			} else if (error.request) {
 				console.log(error.request);
 			} else {

@@ -13,6 +13,7 @@ const mapDispatchToProps = (dispatch) => {
 			if(evt.target.files) {
 				value = evt.target.files[0];
 			}
+
 			return dispatch({type: name, payload: value})
 		},
 		handleSubmit: evt => {

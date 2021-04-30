@@ -9,13 +9,13 @@ const checkRole = (...roles) => (req, res, next) => {
     return res.status(401).send('Unauthorized');
   }
 
-  console.log(req.user.role)
+  console.log(req)
+  
   const hasRole = roles.find(role => req.user.role === role);
   if (!hasRole) {
     return res.status(403).send('You are not allowed to make this request.');
   }
 
-  console.log('here')
   return next();
 };
 
