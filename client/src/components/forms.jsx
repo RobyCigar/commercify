@@ -3,140 +3,131 @@ import PropTypes from 'prop-types'
 
 
 const Forms = ({
-	email,
-	password,
-	passwordVerify,
-	textArea,
-	select,
-	multiple,
-	file,
-	radio,
-	checkbox,
-	firstName,
-	lastName,
-	fullName,
-	onSubmit,
-	onChange
+	EMAIL,
+	PASSWORD,
+	PASSWORD_CHECK,
+	TEXT_AREA,
+	SELECT,
+	SELECT_OPTIONS,
+	MULTIPLE,
+	MULTIPLE_OPTIONS,
+	FILE,
+	RADIO,
+	CHECKBOX,
+	FIRSTNAME,
+	LASTNAME,
+	FULLNAME,
+	ONSUBMIT,
+	ONCHANGE
 }) => {
 	return (
-		<Form method="POST" onSubmit={onSubmit} encType="multipart/form-data">
-			{email ? (
+		<Form method="POST" onSubmit={ONSUBMIT} encType="multipart/form-data">
+			{EMAIL ? (
 				<FormGroup>
 					<Label for="exampleEmail">Email</Label>
 					<Input
 						type="email"
-						name="EMAIL"
-						id="exampleEmail"
+						name={EMAIL}
 						placeholder="Type your email"
-						onChange={onChange}
+						onChange={ONCHANGE}
 					/>
 				</FormGroup>
 			) : null}
-			{firstName ? (
+			{FIRSTNAME ? (
 				<FormGroup>
 					<Label for="exampleEmail">First Name</Label>
 					<Input
 						type="text"
-						name="FIRST_NAME"
-						id="firstname"
+						name={FIRSTNAME}
 						placeholder="Type your first name"
-						onChange={onChange}
+						onChange={ONCHANGE}
 					/>
 				</FormGroup>
 			) : null}
-			{lastName ? (
+			{LASTNAME ? (
 				<FormGroup>
 					<Label for="exampleEmail">Last Name</Label>
 					<Input
-						type="text"
-						name="LAST_NAME"
-						id="lastname"
+						name={LASTNAME}
 						placeholder="type your last name"
-						onChange={onChange}
+						onChange={ONCHANGE}
 					/>
 				</FormGroup>
 			) : null}
-			{fullName ? (
+			{FULLNAME ? (
 				<FormGroup>
 					<Label for="exampleEmail">Full Name</Label>
 					<Input
-						type="fullname"
-						name="FULL_NAME"
-						id="fullname"
+						name={FULLNAME}
 						placeholder="type your full name"
-						onChange={onChange}
+						onChange={ONCHANGE}
 					/>
 				</FormGroup>
 			) : null}
-			{password ? (
+			{PASSWORD ? (
 				<FormGroup>
 					<Label for="examplePassword">Password</Label>
 					<Input
 						type="password"
-						name="PASSWORD"
-						id="examplePassword"
+						name={PASSWORD}
 						placeholder="Your Password"
-						onChange={onChange}
+						onChange={ONCHANGE}
 					/>
 				</FormGroup>
 			) : null}
-			{passwordVerify ? (
+			{PASSWORD_CHECK ? (
 				<FormGroup>
 					<Label for="examplePassword">Verify Password</Label>
 					<Input
 						type="password"
-						name="PASSWORD_CHECK"
-						id="examplePassword"
+						name={PASSWORD_CHECK}
 						placeholder="Type again"
-						onChange={onChange}
+						onChange={ONCHANGE}
 					/>
 				</FormGroup>
 			) : null}
-			{select ? (
+			{SELECT ? (
 				<FormGroup>
 					<Label for="exampleSelect">Select</Label>
-					<Input type="select" name="select" id="exampleSelect" onChange={onChange}>
-						<option>1</option>
+					<Input type="select" name={SELECT} id="exampleSelect" onChange={ONCHANGE}>
+						<option>{SELECT_OPTIONS}</option>
 						<option>2</option>
 						<option>3</option>
 						<option>4</option>
-						<option>5</option>
 					</Input>
 				</FormGroup>
 			) : null}
-			{multiple ? (
+			{MULTIPLE ? (
 				<FormGroup>
 					<Label for="exampleSelectMulti">Select Multiple</Label>
 					<Input
 						type="select"
 						name="selectMulti"
-						id="exampleSelectMulti"
-						multiple
+						onChange={ONCHANGE}
 					>
-						<option>1</option>
+						<option>{MULTIPLE_OPTIONS}</option>
 						<option>2</option>
 						<option>3</option>
 						<option>4</option>
-						<option>5</option>
 					</Input>
 				</FormGroup>
 			) : null}
-			{textArea ? (
+			{TEXT_AREA ? (
 				<FormGroup>
 					<Label for="exampleText">Text Area</Label>
-					<Input type="textarea" name="text" id="exampleText" />
+					<Input type="textarea" name={TEXT_AREA} onChange={ONCHANGE}/>
 				</FormGroup>
 			) : null}
-			{file ? (
+			{FILE ? (
 				<FormGroup>
 					<Label for="exampleFile">File</Label>
-					<Input type="file" name="file" id="exampleFile" />
+					<Input type="file" name={FILE} id="exampleFile" />
 					<FormText color="muted">
 						Please only submit .png or .jpg file
 					</FormText>
 				</FormGroup>
 			) : null}
-			{radio ? (
+			{RADIO ? (
 				<FormGroup tag="fieldset">
 					<legend>Radio Buttons</legend>
 					<FormGroup check>
@@ -153,17 +144,17 @@ const Forms = ({
 					</FormGroup>
 					<FormGroup check disabled>
 						<Label check>
-							<Input type="radio" name="radio1" disabled /> Option three is
+							<Input type="radio" name={RADIO} disabled /> Option three is
 							disabled
 						</Label>
 					</FormGroup>
 				</FormGroup>
 			) : null}
 
-			{checkbox ? (
+			{CHECKBOX ? (
 				<FormGroup check>
 					<Label check>
-						<Input type="checkbox" /> Check me out
+						<Input type="checkbox" name={CHECKBOX} /> Check me out
 					</Label>
 				</FormGroup>
 			) : null}
@@ -176,20 +167,20 @@ const Forms = ({
 };
 
 Forms.propTypes = {
-	email: PropTypes.bool,
-	password: PropTypes.bool ,
-	passwordVerify: PropTypes.bool,
-	textArea: PropTypes.bool,
-	select: PropTypes.bool,
-	multiple: PropTypes.bool,
-	file: PropTypes.bool,
-	radio: PropTypes.bool,
-	checkbox: PropTypes.bool,
-	firstName: PropTypes.bool,
-	lastName: PropTypes.bool,
-	fullName: PropTypes.bool,
-	onSubmit: PropTypes.bool,
-	onChange: PropTypes.bool
+	EMAIL: PropTypes.string,
+	PASSWORD: PropTypes.string ,
+	PASSWORD_VERIFY: PropTypes.string,
+	TEXT_AREA: PropTypes.string,
+	SELECT: PropTypes.string,
+	MULTIPLE: PropTypes.string,
+	FILE: PropTypes.string,
+	RADIO: PropTypes.string,
+	CHECKBOX: PropTypes.string,
+	FIRSTNAME: PropTypes.string,
+	LASTNAME: PropTypes.string,
+	FULLNAME: PropTypes.string,
+	ONSUBMIT: PropTypes.func,
+	ONCHANGE: PropTypes.func
 }
 
 export default Forms;

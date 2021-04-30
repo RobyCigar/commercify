@@ -1,10 +1,12 @@
 import {
-	EMAIL,
-	FIRSTNAME,
-	LASTNAME,
-	FULLNAME,
-	PASSWORD,
-	CHECK_PASSWORD,
+	REGISTER_EMAIL,
+	REGISTER_FIRSTNAME,
+	REGISTER_LASTNAME,
+	REGISTER_FULLNAME,
+	REGISTER_PASSWORD,
+	REGISTER_PASSWORD_CHECK,
+	REGISTER_SUBMIT,
+	REGISTER_ALERT,
 } from "redux/constants";
 
 const initialState = {
@@ -13,24 +15,27 @@ const initialState = {
 	lastname: "",
 	fullname: "",
 	password: "",
-	checkPassword: ""
+	passwordCheck: "",
+	alert: null
 }
 
 const registerReducer = (state = initialState, action) => {
-	const val = action.val;
+	const payload = action.payload;
 	switch (action.type) {
-		case EMAIL:
-			return { ...state, email: val };
-		case FIRSTNAME:
-			return { ...state, firstname: val };
-		case LASTNAME:
-			return { ...state, lastname: val };
-		case FULLNAME:
-			return { ...state, fullname: val };
-		case PASSWORD:
-			return { ...state, password: val };
-		case CHECK_PASSWORD:
-			return { ...state, checkPassword: val };
+		case REGISTER_EMAIL:
+			return { ...state, email: payload };
+		case REGISTER_FIRSTNAME:
+			return { ...state, firstName: payload };
+		case REGISTER_LASTNAME:
+			return { ...state, lastName: payload };
+		case REGISTER_PASSWORD:
+			return { ...state, password: payload };
+		case REGISTER_PASSWORD_CHECK:
+			return { ...state, passwordCheck: payload };
+		case REGISTER_SUBMIT:
+			return { ...state, submit: true}		
+		case REGISTER_ALERT:
+			return { ...state, alert: payload }
 		default:
 			return state;
 	}

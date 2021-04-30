@@ -6,9 +6,11 @@ import { connect } from 'react-redux'
 import { useCookies } from 'react-cookie'
 import { loginAction } from "redux/actions"
 
+
 import Forms from "components/forms";
 import Navbar from "components/navbar";
 import Footer from "components/footer";
+import { LOGIN_EMAIL as EMAIL, LOGIN_PASSWORD as PASSWORD} from "redux/constants"
 
 const Login = ({email, password, alert, success, handleChange, handleSubmit, user, token}) => {
 	const [ cookies, setCookies ] = useCookies()
@@ -40,12 +42,10 @@ const Login = ({email, password, alert, success, handleChange, handleSubmit, use
 			<div className="d-flex my-5 flex-lg-row flex-column align-items-center">
 				<div className="w-75 px-md-5 p-4">
 					<Forms
-						email={true}
-						password={true}
-						multiple={false}
-						textArea={false}
-						onSubmit={handleSubmit}
-						onChange={handleChange}
+						EMAIL={EMAIL}
+						PASSWORD={PASSWORD}
+						ONSUBMIT={handleSubmit}
+						ONCHANGE={handleChange}
 					/>
 					<FormText color="muted">
 						Don't have account? <Link to="/register">Sign up </Link>now

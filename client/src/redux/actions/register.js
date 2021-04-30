@@ -1,10 +1,30 @@
-const mapDispatchToProps = dispatch => {
-	console.log("dispatched", dispatch)
+import { REGISTER_SUBMIT, REGISTER_ALERT } from 'redux/constants'
+
+const mapStateToProps = state => {
+	const {alert, password, passwordCheck} = state.register
 	return {
-		onChange: payload => dispatch({ type: "EMAIL", payload: payload.val})
+		alert: alert,
+		password: password,
+		passwordCheck: passwordCheck
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		handleChange: evt => {
+			return dispatch({ type: evt.target.name, payload: evt.target.value})
+		},
+		handleSubmit: evt => {
+			evt.preventDefault()
+			return dispatch({ type: REGISTER_SUBMIT })
+		},
+		handleAlert: payload => {
+			return dispatch({ type: REGISTER_ALERT, payload: payload })
+		}
 	}
 }
 
 export default {
+	state: mapStateToProps,
 	dispatch: mapDispatchToProps
 }
