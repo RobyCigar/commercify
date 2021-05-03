@@ -45,10 +45,15 @@ app.use(cors())
 // Model and Route
 app.use(api)
 
+// Make public directory accessible on the browser
+app.use(express.static(__dirname+'/public'));
+app.get('*', (req, res) => res.status(404).json('No API route found'));
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
 	next(createError(404));
 });
+
 
 // error handler
 app.use(function (err, req, res, next) {
