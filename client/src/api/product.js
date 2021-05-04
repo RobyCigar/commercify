@@ -7,7 +7,7 @@ export const fetchProduct = async () => {
 		url: `${URL}/product/list`,
 	})
 		.then((res) => {
-			console.log("fetched", res);
+			return res.data.products;
 		})
 		.catch(function (error) {
 			if (error.response) {

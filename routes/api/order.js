@@ -6,7 +6,6 @@ const Order = require('../../models/order');
 const Cart = require('../../models/cart');
 const Product = require('../../models/product');
 const auth = require('../../middleware/auth');
-const taxConfig = require('../../config/tax');
 
 router.post('/add', auth, async (req, res) => {
   try {
@@ -215,36 +214,6 @@ router.put('/cancel/item/:itemId', auth, async (req, res) => {
   }
 });
 
-// calculate order tax amount
-const caculateTaxAmount = order => {
-  const taxRate = taxConfig.stateTaxRate;
-
-  order.totalTax = 0;
-
-  if (order.products && order.products.length > 0) {
-    order.products.map(item => {
-      if (item.product) {
-        if (item.product.taxable) {
-          const price = Number(item.product.price).toFixed(2);
-          const taxAmount = Math.round(price * taxRate * 100) / 100;
-          item.priceWithTax = parseFloat(price) + parseFloat(taxAmount);
-          order.totalTax += taxAmount;
-        }
-
-        item.totalPrice = parseFloat(item.totalPrice.toFixed(2));
-      }
-    });
-  }
-
-  order.totalWithTax = order.total + order.totalTax;
-
-  order.total = parseFloat(Number(order.total.toFixed(2)));
-  order.totalTax = parseFloat(
-    Number(order.totalTax && order.totalTax.toFixed(2))
-  );
-  order.totalWithTax = parseFloat(Number(order.totalWithTax.toFixed(2)));
-  return order;
-};
 
 const increaseQuantity = products => {
   let bulkOptions = products.map(item => {

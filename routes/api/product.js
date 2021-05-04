@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
+const mongoose = require("mongoose")
 
 // Bring in Models & Helpers
 const Product = require("../../models/product");
@@ -42,17 +43,16 @@ router.post(
   role.checkRole(role.ROLES.Admin, role.ROLES.Merchant),
   upload,
   (req, res) => {
-    console.log(req.files);
-    console.log(req.file);
     try {
       const name = req.body.name;
       const description = req.body.description;
       const quantity = req.body.quantity;
       const price = req.body.price;
       const isActive = req.body.isActive;
-      const brand = req.body.brand != 0 ? req.body.brand : null;
+      // This should be brand Id
+      // const brand = req.body.brand != 0 ? req.body.brand : null; 
       const image = `/uploads/${req.files[0].filename}`;
-      console.log("ini request", req);
+
       if (!description || !name) {
         return res
           .status(400)
@@ -67,26 +67,30 @@ router.post(
         return res.status(400).json({ error: "You must enter a price." });
       }
 
-      if (!image) {
-        return res.status(400).json({ error: "You must add image." });
+      if (!req.files[0]) {
+        return res.status(400).json({ error: "You must add an image." });
       }
 
-      let imageUrl = "";
+      let imageUrl = image;
       let imageKey = "";
 
       const product = new Product({
-        name,
-        description,
-        quantity,
-        price,
-        isActive,
-        brand,
-        image,
-        imageUrl,
-        imageKey,
+        _id: new mongoose.Types.ObjectId(),
+        name: name,
+        description: description,
+        quantity: quantity,
+        price: price,
+        isActive: isActive,
+        // brand: brand,
+        imageUrl: imageUrl,
+        imageKey: imageKey,
       });
 
       product.save((err, newProduct) => {
+        if(err) {
+          console.log('error here', err)
+          res.status(400).json({error: "Error adding product"})
+        }
         res.status(200).json({
           success: true,
           message: `Product has been added successfully!`,
