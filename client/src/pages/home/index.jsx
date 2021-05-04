@@ -15,14 +15,16 @@ import { useCookies } from "react-cookie";
 import { homeAction } from "redux/actions";
 import Footer from "components/footer";
 import Navbar from "components/navbar";
-import { fetchUser } from "api";
+import { fetchUser, fetchProduct } from "api";
 
 const Home = () => {
 	const [cookie] = useCookies();
 
 	useEffect(() => {
 		fetchUser(cookie.token);
+		fetchProduct();
 	}, []);
+
 	return (
 		<>
 			<Navbar logout={true} />

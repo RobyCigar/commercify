@@ -1,13 +1,13 @@
 import axios from "axios";
-import { URL } from './index'
+import { URL } from "./index";
 
-export const product = async () => {
+export const fetchProduct = async () => {
 	return await axios({
 		method: "get",
-		url: `${URL}/product/list`
+		url: `${URL}/product/list`,
 	})
-		.then(res => {
-			console.log('res', res)
+		.then((res) => {
+			console.log("fetched", res);
 		})
 		.catch(function (error) {
 			if (error.response) {
@@ -21,20 +21,20 @@ export const product = async () => {
 			}
 			console.log(error.config);
 		});
-}
+};
 
 export const productAdd = async (data, token) => {
 	let Data = new FormData();
-	console.log(data.picture)
-	Data.append('image', data.picture)
+	console.log(data.picture);
+	Data.append("image", data.picture);
 
 	return await axios({
 		method: "post",
-		data: {Data, ...data},
+		data: { Data, ...data },
 		url: `${URL}/product/add`,
 		headers: {
-			"Authorization": token,
-			"Content-Type": "multipart/form-data"
+			Authorization: token,
+			"Content-Type": "multipart/form-data",
 		},
 	})
 		.then((res) => {
