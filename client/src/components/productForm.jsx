@@ -41,7 +41,7 @@ const ProductForm = ({handleChange, handleSubmit}) => {
           Please fill all the form above
         </FormText>
       </FormGroup>
-      <Button type="submit">Submit</Button>
+      <Button type="submit" color="primary">Submit</Button>
     </Form>
   )
 }

@@ -7,12 +7,13 @@ const getProductFormFromStore = state => {
 }
 
 const getTokenFromStore = ({user}) => {
-  return user.token
+  return user.token;
 }
-
+ 
 function* submitProduct() {
   const data = yield select(getProductFormFromStore)
   const token = yield select(getTokenFromStore)
+  console.log('here')
   try {
     const message = yield call(productAdd, data, token)
     yield put({type: PRODUCT_ADD_ALERT, payload: message})

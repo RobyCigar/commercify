@@ -66,18 +66,6 @@ const Navigation = ({ login, register, logout, handleLogout }) => {
 								<NavLink>All Products</NavLink>
 							</Link>
 						</NavItem>
-						<UncontrolledDropdown nav inNavbar>
-							<DropdownToggle nav caret className="ml-3">
-								Category
-							</DropdownToggle>
-							<DropdownMenu right>
-								<DropdownItem>Kids</DropdownItem>
-								<DropdownItem divider />
-								<DropdownItem>Fashion</DropdownItem>
-								<DropdownItem divider />
-								<DropdownItem>Electronict</DropdownItem>
-							</DropdownMenu>
-						</UncontrolledDropdown>
 					</Nav>
 					{register ? (
 						<NavbarText className="mr-4">

@@ -25,12 +25,11 @@ export const fetchProduct = async () => {
 
 export const productAdd = async (data, token) => {
 	let Data = new FormData();
-	console.log(data.picture);
-	Data.append("image", data.picture);
+	console.log('ini data', data, "product-image");
 
 	return await axios({
 		method: "post",
-		data: { Data, ...data },
+		data: Data,
 		url: `${URL}/product/add`,
 		headers: {
 			Authorization: token,

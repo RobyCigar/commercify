@@ -11,7 +11,7 @@ import {
 const initialState = {
 	name: "",
 	description: "",
-	picture: {},
+	picture: null,
 	quantity: 0,
 };
 

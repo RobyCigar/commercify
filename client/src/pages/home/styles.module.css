@@ -1,0 +1,35 @@
+.container {
+	list-style: none;
+	text-decoration: none !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+}
+
+.page {
+	padding: 5px 13px;
+	margin: 2px;
+	border-radius: 4px;
+	border: 1px solid #999999;
+}
+
+.previous {
+	padding: 7px 12px;
+	margin-right: 5px;
+	border-radius: 4px;
+	border: 1px solid #999999;
+}
+
+
+.next {
+	padding: 7px 12px;
+	margin-left: 5px;
+	border-radius: 4px;
+	border: 1px solid #999999;
+}
+
+.active {
+	background: #007bff;
+	color: #eeeeee;
+}
