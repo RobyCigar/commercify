@@ -51,6 +51,10 @@ router.post(
       const isActive = req.body.isActive;
       // This should be brand Id
       // const brand = req.body.brand != 0 ? req.body.brand : null; 
+      if (!req.files || !req.files[0].filename) {
+        return res.status(400).json({ error: "You must add an image." });
+      }
+
       const image = `/uploads/${req.files[0].filename}`;
 
       if (!description || !name) {
@@ -67,9 +71,6 @@ router.post(
         return res.status(400).json({ error: "You must enter a price." });
       }
 
-      if (!req.files[0]) {
-        return res.status(400).json({ error: "You must add an image." });
-      }
 
       let imageUrl = image;
       let imageKey = "";
@@ -93,14 +94,14 @@ router.post(
         }
         res.status(200).json({
           success: true,
-          message: `Product has been added successfully!`,
+          message: `Product has been successfully added!`,
           data: newProduct,
         });
       });
     } catch (error) {
       console.log(error);
       return res.status(400).json({
-        error: "Your request could not be processed. Please try again.",
+        error: "Your request could not be processed. Please try again. Or maybe you don't fill all the form?",
       });
     }
   }

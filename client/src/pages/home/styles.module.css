@@ -33,3 +33,9 @@
 	background: #007bff;
 	color: #eeeeee;
 }
+
+.img {
+	max-width: 300px;
+	min-width: 250px;
+	margin: auto;
+}

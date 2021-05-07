@@ -5,15 +5,14 @@ import Forms from 'components/productForm'
 import { Button, Alert } from 'reactstrap'
 import { productAddAction } from 'redux/actions'
 
-const AddProduct = ({handleChange, handleSubmit, message}) => {
-
+const AddProduct = ({handleChange, handleSubmit, alert}) => {
   return (
     <div>
     	<Navbar/>
       {
-        message ? 
+        alert ? 
           <Alert color="info" >
-            {message}
+            {alert}
           </Alert>
         : null
       }

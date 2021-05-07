@@ -14,6 +14,7 @@ import {
   PRODUCT_ADD_QUANTITY,
   PRODUCT_ADD_SUBMIT
 } from "redux/constants";
+import MyDropzone from './dropzone'
 
 const ProductForm = ({handleChange, handleSubmit}) => {
   return (
@@ -35,8 +36,10 @@ const ProductForm = ({handleChange, handleSubmit}) => {
         <Input onChange={handleChange} type="number" min="0" step="100" name={PRODUCT_ADD_PRICE} placeholder="Product Available" id="exampleText" />
       </FormGroup>
       <FormGroup>
-        <Label for="PICTURE">Picture</Label>
-        <Input onChange={handleChange} type="file" name={PRODUCT_ADD_PICTURE}/>
+        <Label for="PRICE">Picture</Label>
+        <MyDropzone/>
+      </FormGroup>
+      <FormGroup>
         <FormText color="muted">
           Please fill all the form above
         </FormText>

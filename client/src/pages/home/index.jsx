@@ -33,24 +33,24 @@ const Home = () => {
 		let userResult = await fetchUser(cookie.token);
 		let productResult = await fetchProduct();
 		setProducts(productResult);
-		setTmpItems(productResult.slice(0, 2))
-
+		// Fetch first 6 items in the array
+		setTmpItems(productResult.slice(0, 6))
+		console.log(productResult)
 		// Length of product divide by item in each page
-		setPageCount(productResult.length/3) 
+		setPageCount(productResult.length/6) 
 	}, []);
 
 	const handlePageClick = (data) => {
 		let num = data.selected
 		console.log("clicked", num);
-		setTmpItems(products.slice(num*3, (num*3)+3))
-		console.log('ini splice', num*3, num*3+3)
-		console.log('ini tmp', tmpItems)
-		console.log('ini products', products)
+		// change the next 6 or prev 6 items when the btn clicked 
+		setTmpItems(products.slice(num*6, (num*6)+6))
 	};
 
 	const onPageActive = (data) => {
 		console.log("fuck", data);
 	};
+	console.log('tmp', tmpItems)
 
 
 	if (!products || !tmpItems) {
@@ -70,13 +70,14 @@ const Home = () => {
 			<Navbar logout={true} />
 			<div className="row mx-auto container my-5">
 				{tmpItems.map((val, index) => (
-					<Card className="col-4">
+					<Card key={val._id} className="col-12 col-sm-6 col-lg-4">
 						<CardImg
 							top
 							width="250"
 							height="200"
 							src={`${process.env.REACT_APP_ROUTE_DEV}/${val.imageUrl}`}
 							alt="Card image cap"
+							className={styles.img}
 						/>
 						<CardBody>
 							<CardTitle tag="h5">

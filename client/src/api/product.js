@@ -24,7 +24,15 @@ export const fetchProduct = async () => {
 };
 
 export const productAdd = async (data, token) => {
+	const { name, description, picture, price, quantity } = data;
+
 	let Data = new FormData();
+	Data.append("name", name)
+	Data.append("description", description)
+	Data.append("image", picture)
+	Data.append("price", price)
+	Data.append("quantity", quantity)
+
 	console.log('ini data', data, "product-image");
 
 	return await axios({
@@ -46,7 +54,7 @@ export const productAdd = async (data, token) => {
 				console.log(error.response.data);
 				console.log(error.response.status);
 				console.log(error.response.headers);
-				return error.response.data;
+				return error.response.data.error;
 			} else if (error.request) {
 				console.log(error.request);
 			} else {

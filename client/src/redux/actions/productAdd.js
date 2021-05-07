@@ -1,7 +1,7 @@
-import { PRODUCT_ADD_SUBMIT } from 'redux/constants'
+import { PRODUCT_ADD_SUBMIT, PRODUCT_ADD_PICTURE } from 'redux/constants'
 
-const mapStateToProps = ({alert}) => {
-	return {message: alert.message};
+const mapStateToProps = ({product}) => {
+	return {alert: product.alert};
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -22,6 +22,10 @@ const mapDispatchToProps = (dispatch) => {
 		handleSubmit: evt => {
 			evt.preventDefault()
 			return dispatch({type: PRODUCT_ADD_SUBMIT})
+		},
+		handlePicture: file => {
+			console.log("pic", file)
+			return dispatch({type: PRODUCT_ADD_PICTURE, payload: file })
 		}
 	}
 } 
