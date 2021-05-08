@@ -25,7 +25,7 @@ const ProductForm = ({handleChange, handleSubmit}) => {
       </FormGroup>
       <FormGroup>
         <Label for="DESCRIPTION">Description</Label>
-        <Input onChange={handleChange} type="textarea" name={PRODUCT_ADD_DESCRIPTION} placeholder="Product Description" id="exampleText" />
+        <Input minlength="200" maxlength=" 1000" onChange={handleChange} type="textarea" name={PRODUCT_ADD_DESCRIPTION} placeholder="Product Description" id="exampleText" />
       </FormGroup>
       <FormGroup>
         <Label for="QUANTITY">Quantity</Label>
@@ -37,7 +37,7 @@ const ProductForm = ({handleChange, handleSubmit}) => {
       </FormGroup>
       <FormGroup>
         <Label for="PRICE">Picture</Label>
-        <MyDropzone/>
+        <MyDropzone />
       </FormGroup>
       <FormGroup>
         <FormText color="muted">

@@ -37,5 +37,16 @@
 .img {
 	max-width: 300px;
 	min-width: 250px;
+	height: 200px;
+	width: auto;
 	margin: auto;
+	object-fit: contain;
+	overflow: hidden;
+}
+
+.desc {
+	height: 50px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

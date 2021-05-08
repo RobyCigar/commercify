@@ -3,7 +3,8 @@ import {
 	Switch,
 	Route,
   useRouteMatch,
-  Redirect
+  Redirect,
+  useParams
 } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import { useEffect } from 'react'
@@ -17,6 +18,8 @@ import Login from './login'
 import Register from './register'
 import Home from './home'
 import AddProduct from './product/add'
+import ProductId from './product/_id'
+import NotFound from './404_not_found'
 
 const Routes = ({handleUser}) => {
   const [cookies, setCookie] = useCookies()
@@ -45,6 +48,9 @@ const Routes = ({handleUser}) => {
           <PrivateRoute path="/product">
             <Product/>
           </PrivateRoute>
+          <Route path="*">
+            <NotFound/>
+          </Route>
    			</Switch>
    		</Router>	
   )
@@ -74,11 +80,18 @@ const PrivateRoute = ({children, ...rest}) => {
 
 const Product = () => {
   const { path, url } = useRouteMatch()
+  const slug = useParams()
+
+  console.log('path', path, url)
+  console.log('slug', slug)
 
   return (
     <Switch>
       <Route exact path={`${path}/add`}>
         <AddProduct/>
+      </Route>
+      <Route path={`${path}/:id`}>
+        <ProductId/>
       </Route>
     </Switch>
   )

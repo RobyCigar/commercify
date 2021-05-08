@@ -21,37 +21,36 @@ import { homeAction } from "redux/actions";
 import styles from "./styles.module.css";
 import Footer from "components/footer";
 import Navbar from "components/navbar";
-import { fetchUser, fetchProduct } from "api";
+import { fetchUser, fetchProducts } from "api";
 
 const Home = () => {
 	const [cookie] = useCookies();
 	const [products, setProducts] = useState(null);
 	const [pageCount, setPageCount] = useState(4);
-	const [tmpItems, setTmpItems] = useState(null)
+	const [tmpItems, setTmpItems] = useState(null);
 
 	useEffect(async () => {
 		let userResult = await fetchUser(cookie.token);
-		let productResult = await fetchProduct();
+		let productResult = await fetchProducts();
 		setProducts(productResult);
 		// Fetch first 6 items in the array
-		setTmpItems(productResult.slice(0, 6))
-		console.log(productResult)
+		setTmpItems(productResult.slice(0, 6));
+		console.log(productResult);
 		// Length of product divide by item in each page
-		setPageCount(productResult.length/6) 
+		setPageCount(productResult.length / 6);
 	}, []);
 
 	const handlePageClick = (data) => {
-		let num = data.selected
+		let num = data.selected;
 		console.log("clicked", num);
-		// change the next 6 or prev 6 items when the btn clicked 
-		setTmpItems(products.slice(num*6, (num*6)+6))
+		// change the next 6 or prev 6 items when the btn clicked
+		setTmpItems(products.slice(num * 6, num * 6 + 6));
 	};
 
 	const onPageActive = (data) => {
 		console.log("fuck", data);
 	};
-	console.log('tmp', tmpItems)
-
+	console.log("tmp", tmpItems);
 
 	if (!products || !tmpItems) {
 		return (
@@ -68,20 +67,26 @@ const Home = () => {
 	return (
 		<>
 			<Navbar logout={true} />
-			<div className="row mx-auto container my-5">
+			<div className="row my-5 mx-auto container">
 				{tmpItems.map((val, index) => (
-					<Card key={val._id} className="col-12 col-sm-6 col-lg-4">
-						<CardImg
-							top
-							width="250"
-							height="200"
+					<Card
+						key={val._id}
+						className="col-12 container col-sm-6 col-lg-4 my-4"
+					>
+						<img
 							src={`${process.env.REACT_APP_ROUTE_DEV}/${val.imageUrl}`}
 							alt="Card image cap"
 							className={styles.img}
 						/>
 						<CardBody>
 							<CardTitle tag="h5">
-								<Link to={`product/${val.slug}`} style={{ fontSize: 18 }}>
+								<Link
+									to={{
+										pathname: `product/${val._id}`,
+										state: { shit: "okay" },
+									}}
+									style={{ fontSize: 18 }}
+								>
 									{val.name}
 								</Link>
 							</CardTitle>
@@ -91,8 +96,10 @@ const Home = () => {
 							<CardSubtitle tag="h6" className="mb-2 text-muted">
 								Price: Rp.{val.price}
 							</CardSubtitle>
-							<CardText>{val.description}</CardText>
-							<Button color="primary">View</Button>
+							<CardText className={styles.desc}>
+								{val.description}
+							</CardText>
+							<Button color="primary">Order Now</Button>
 						</CardBody>
 					</Card>
 				))}
@@ -104,13 +111,13 @@ const Home = () => {
 				className={styles.pagination}
 				containerClassName={styles.container}
 				marginPagesDisplayed={0}
-				nextLabel={">"}
+				nextLabel={"next >"}
 				onPageActive={onPageActive}
 				onPageChange={handlePageClick}
 				pageRangeDisplayed={5}
 				pageClassName={styles.page}
 				pageCount={pageCount}
-				previousLabel={"<"}
+				previousLabel={"< previous"}
 				previousLinkClassName={styles.previous}
 				nextLinkClassName={styles.next}
 			/>

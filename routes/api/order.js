@@ -7,6 +7,17 @@ const Cart = require('../../models/cart');
 const Product = require('../../models/product');
 const auth = require('../../middleware/auth');
 
+/*
+
+post /add
+get /list
+get /orderId
+delete /cancel/:orderId
+put /cancel/item/:itemId
+
+*/
+
+
 router.post('/add', auth, async (req, res) => {
   try {
     const cart = req.body.cartId;

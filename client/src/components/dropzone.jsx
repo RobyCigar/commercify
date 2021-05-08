@@ -1,42 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { connect } from "react-redux";
 import { productAddAction } from "redux/actions";
-import styles from "./dropzone.module.css";
+import AvatarEditor from "react-avatar-editor";
+import { Button } from "reactstrap";
 import { useDropzone } from "react-dropzone";
-
-const thumbsContainer = {
-	display: "flex",
-	flexDirection: "row",
-	flexWrap: "wrap",
-	marginTop: 16,
-};
-
-const thumb = {
-	display: "inline-flex",
-	borderRadius: 2,
-	border: "1px solid #eaeaea",
-	marginBottom: 8,
-	marginRight: 8,
-	width: 100,
-	height: 100,
-	padding: 4,
-	boxSizing: "border-box",
-};
-
-const thumbInner = {
-	display: "flex",
-	minWidth: 0,
-	overflow: "hidden",
-};
-
-const img = {
-	display: "block",
-	width: "auto",
-	height: "100%",
-};
+import styles from "./dropzone.module.css";
 
 function MyDropzone({ handlePicture }) {
 	const [files, setFiles] = useState([]);
+	const inputEl = useRef(null);
+
 	const { getRootProps, getInputProps } = useDropzone({
 		accept: "image/*",
 		onDrop: (acceptedFiles) => {
@@ -51,14 +24,6 @@ function MyDropzone({ handlePicture }) {
 		},
 	});
 
-	const thumbs = files.map((file) => (
-		<div style={thumb} key={file.name}>
-			<div style={thumbInner}>
-				<img src={file.preview} style={img} />
-			</div>
-		</div>
-	));
-
 	useEffect(
 		() => () => {
 			// Make sure to revoke the data uris to avoid memory leaks
@@ -67,17 +32,30 @@ function MyDropzone({ handlePicture }) {
 		[files]
 	);
 
-	return (
-		<section>
-			<div
-				{...getRootProps({ className: "dropzone" })}
-				className={styles.dropzone}
-			>
-				<input {...getInputProps()} />
-				<p>Drag 'n' drop some files here, or click to select files</p>
+	const thumbs = files.map((file) => (
+		<div className={styles.thumb} key={file.name}>
+			<div className={styles.thumbInner}>
+				<img src={file.preview} className={styles.img} />
 			</div>
-			<aside style={thumbsContainer}>{thumbs}</aside>
-		</section>
+		</div>
+	));
+	return (
+		<>
+			<section>
+				<div className={styles.dropzone}>
+				<div
+					{...getRootProps({ className: "dropzone" })}
+					
+				>
+					<input {...getInputProps()} className={styles.dropzone}/>
+					<p>
+						Drag 'n' drop some files here, or click to select files
+					</p>
+				</div>
+				</div>
+				<aside className={styles.thumbsContainer}>{thumbs}</aside>
+			</section>
+		</>
 	);
 }
 

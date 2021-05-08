@@ -28,6 +28,7 @@ const productReducer = (state = initialState, action) => {
 			return { ...state, price: payload };
 		}
 		case PRODUCT_ADD_PICTURE: {
+			console.log('here paylaod', payload)
 			return { ...state, picture: payload };
 		}
 		case PRODUCT_ADD_QUANTITY: {
