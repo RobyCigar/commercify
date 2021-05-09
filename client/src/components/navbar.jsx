@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { useCookies } from 'react-cookie'
-import { connect } from 'react-redux'
-import { TOKEN } from 'redux/constants'
+import { useCookies } from "react-cookie";
+import { connect } from "react-redux";
+import { TOKEN } from "redux/constants";
 import {
 	Collapse,
 	Navbar,
@@ -18,25 +18,24 @@ import {
 	Button,
 } from "reactstrap";
 import gear from "../assets/cogs.svg";
-import PropTypes from 'prop-types'
-
+import PropTypes from "prop-types";
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		handleLogout: (removeCookie, token) => {
-			removeCookie(token)
-			return dispatch({type: TOKEN, payload: null})
-		}
-	}
-}
-
+			removeCookie(token);
+			return dispatch({ type: TOKEN, payload: null });
+		},
+	};
+};
 
 const Navigation = ({ login, register, logout, handleLogout }) => {
-	const [cookies, setCookie, removeCookie] = useCookies()
+	const [cookies, setCookie, removeCookie] = useCookies();
 	const [isOpen, setIsOpen] = useState(false);
 
 	const logoutUser = () => {
-		handleLogout(removeCookie, "token")
+		console.log("clicked")
+		handleLogout(removeCookie, "token");
 	};
 
 	const toggle = () => setIsOpen(!isOpen);
@@ -90,8 +89,11 @@ const Navigation = ({ login, register, logout, handleLogout }) => {
 					) : null}
 
 					{logout ? (
-						<>
-							<UncontrolledDropdown className="mx-4" inNavbar>
+						<div className="mr-2">
+							<UncontrolledDropdown
+								className="ml-3 mr-5"
+								inNavbar
+							>
 								<DropdownToggle caret>
 									<img
 										style={{ width: 20 }}
@@ -100,22 +102,17 @@ const Navigation = ({ login, register, logout, handleLogout }) => {
 									/>{" "}
 									{"  "} Settings {"  "}
 								</DropdownToggle>
-								<DropdownMenu right>
+								<DropdownMenu>
 									<DropdownItem header>Settings</DropdownItem>
-									<DropdownItem>Profile</DropdownItem>
-									<DropdownItem>
-										Dropdown Item Text
-									</DropdownItem>
+									<DropdownItem>My Profile</DropdownItem>
+									<DropdownItem>My Product</DropdownItem>
 									<DropdownItem divider />
-										<DropdownItem
-											onClick={logoutUser}
-											className="text-danger"
-										>
-											Logout
-										</DropdownItem>
+									<DropdownItem onClick={logoutUser}>
+										Logout
+									</DropdownItem>
 								</DropdownMenu>
 							</UncontrolledDropdown>
-						</>
+						</div>
 					) : null}
 				</Collapse>
 			</Navbar>
@@ -123,8 +120,11 @@ const Navigation = ({ login, register, logout, handleLogout }) => {
 	);
 };
 
-Navigation.propTypes = {
-login: PropTypes.bool, register: PropTypes.bool, logout: PropTypes.bool, handleLogout: PropTypes.bool
-}
+// Navigation.propTypes = {
+// 	login: PropTypes.bool,
+// 	register: PropTypes.bool,
+// 	logout: PropTypes.bool,
+// 	handleLogout: PropTypes.bool,
+// };
 
 export default connect(null, mapDispatchToProps)(Navigation);

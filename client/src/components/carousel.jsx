@@ -7,17 +7,12 @@ import {
   CarouselCaption,
 } from "reactstrap";
 
-import pic1 from "../assets/banner-2.png";
 import pic2 from "../assets/banner-3.png";
 import pic3 from "../assets/banner-4.png";
 import pic4 from "../assets/banner-5.jpg";
 import pic5 from "../assets/banner-6.jpg";
 
-const items = [
-  {
-    src: pic1,
-  },
-  {
+const items = [  {
     src: pic2,
   },
   {

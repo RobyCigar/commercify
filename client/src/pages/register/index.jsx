@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import {
 	FormText,
-	Alert,
+	UncontrolledAlert,
 	Button,
 	Modal,
 	ModalHeader,
@@ -39,8 +39,7 @@ const Register = ({handleSubmit, handleChange, password, passwordCheck, alert}) 
 
 	return (
 		<>
-			<Navbar login={true} />
-			{alert ? <Alert color="danger">{alert}</Alert> : null}
+			<Navbar login={true} /> 
 				<h2 className="m-5 text-center text-dark">
 					<strong>Register</strong>
 				</h2>
@@ -60,6 +59,14 @@ const Register = ({handleSubmit, handleChange, password, passwordCheck, alert}) 
 					</FormText>
 				</div>
 			</div>
+      {alert ? (
+        <UncontrolledAlert
+          style={{ position: "fixed", top: 0, width: "100vw", margin: 0 }}
+          color="info"
+        >
+          {alert}
+        </UncontrolledAlert>
+      ) : null}
 			<Footer />
 		</>
 	);

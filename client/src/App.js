@@ -7,15 +7,10 @@ import store from "./redux/store";
 export const UserCtx = createContext();
 
 function App() {
-  const [user, setUser] = useState(false);
-  const value = { user, setUser };
-  
   return (
     <CookiesProvider>
       <Provider store={store}>
-        <UserCtx.Provider value={value}>
           <Routes />
-        </UserCtx.Provider>
       </Provider>
     </CookiesProvider>
   );

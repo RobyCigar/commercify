@@ -21,6 +21,7 @@ export const login = async (data) => {
 				console.log(error.response.data);
 				console.log(error.response.status);
 				console.log(error.response.headers);
+				throw  error.response.data.error;
 			} else if (error.request) {
 				console.log(error.request);
 			} else {

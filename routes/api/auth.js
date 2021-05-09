@@ -147,7 +147,7 @@ router.post("/register", (req, res) => {
 
           jwt.sign(payload, secret, { expiresIn: tokenLife }, (err, token) => {
             res.status(200).json({
-              success: true,
+              success: "Register success, you can login now",
               subscribed,
               token: `Bearer ${token}`,
               user: {

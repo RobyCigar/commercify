@@ -52,6 +52,7 @@ const Forms = ({
 						name={LASTNAME}
 						placeholder="type your last name"
 						onChange={ONCHANGE}
+						autocomplete="off"
 					/>
 				</FormGroup>
 			) : null}

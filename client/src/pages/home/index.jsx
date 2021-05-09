@@ -86,6 +86,7 @@ const Home = () => {
 										state: { shit: "okay" },
 									}}
 									style={{ fontSize: 18 }}
+									className="font-weight-bold"
 								>
 									{val.name}
 								</Link>

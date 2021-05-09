@@ -1,7 +1,6 @@
 import { LOGIN_SUBMIT } from 'redux/constants'
 
 const mapStateToProps = (state) => {
-	console.log('statee', state)
 	return {...state.login, user: state.user.email, token: state.user.token};
 };
 

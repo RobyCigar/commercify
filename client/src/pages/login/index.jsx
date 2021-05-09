@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { FormText, Alert } from "reactstrap";
+import { FormText, Alert, UncontrolledAlert } from "reactstrap";
 import { Link, Redirect } from "react-router-dom";
 import { FacebookLoginButton, GoogleLoginButton, GithubLoginButton } from 'react-social-login-buttons';
 import { connect } from 'react-redux'
@@ -35,7 +35,14 @@ const Login = ({email, password, alert, success, handleChange, handleSubmit, use
 	return (
 		<>
 			<Navbar register={true} />
-			{alert ? <Alert color="danger">{alert}</Alert> : null}
+      {alert ? (
+        <Alert
+          style={{ position: "fixed", top: 0, width: "100vw", margin: 0 }}
+          color="info"
+        >
+          {alert}
+        </Alert>
+      ) : null}
 			<h2 className="text-center text-dark my-5">
 				<strong className="h2">Login</strong>
 			</h2>

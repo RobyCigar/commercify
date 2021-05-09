@@ -1,8 +1,8 @@
 import { takeEvery, call, put, select } from 'redux-saga/effects'
 import { USER } from 'redux/constants'
-import { LOGIN_SUBMIT } from 'redux/constants'
+import { LOGIN_SUBMIT, LOGIN_ALERT } from 'redux/constants'
 import { login } from 'api'
-
+ 
 const getStateFromStore = state => {
 	const { email, password } = state.login
 	return {
@@ -17,9 +17,9 @@ function* submitLogin() {
 	try {
 		const user = yield call(login, data)
 		yield put({type: USER, payload: user})
-	} catch (e) {
-		console.log('ini err', e)
-		yield put({type: USER, payload: null})
+	} catch (error) {
+		console.log('ini err', error)
+		yield put({type: LOGIN_ALERT, payload: error})
 	}
 }
 

@@ -10,7 +10,7 @@ function* submitProduct() {
 	const data = yield select(getStateFromStore)
 	try {
 		const fetch = yield call(register, data)
-		console.log('fetch')
+		console.log('fetch', fetch)
 		yield put({type: REGISTER_ALERT, payload: fetch})
 	} catch (e) {
 		console.log(e)

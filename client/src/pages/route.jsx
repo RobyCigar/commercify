@@ -25,6 +25,7 @@ const Routes = ({handleUser}) => {
   const [cookies, setCookie] = useCookies()
 
   useEffect(() => {
+    console.log('here')
     if(cookies.token) { 
       handleUser(cookies.token)
     }
@@ -59,11 +60,12 @@ const Routes = ({handleUser}) => {
 const PrivateRoute = ({children, ...rest}) => {
   const [cookie, setCookie] = useCookies()
 
+  console.log("here1", cookie.token, cookie)
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        cookie.token  ? (
+        cookie.token ? (
           children
         ) : (
           <Redirect
@@ -81,9 +83,6 @@ const PrivateRoute = ({children, ...rest}) => {
 const Product = () => {
   const { path, url } = useRouteMatch()
   const slug = useParams()
-
-  console.log('path', path, url)
-  console.log('slug', slug)
 
   return (
     <Switch>
