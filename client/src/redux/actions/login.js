@@ -1,4 +1,4 @@
-import { LOGIN_SUBMIT } from 'redux/constants'
+import { LOGIN_SUBMIT, LOGIN_ALERT } from 'redux/constants'
 
 const mapStateToProps = (state) => {
 	return {...state.login, user: state.user.email, token: state.user.token};
@@ -13,6 +13,9 @@ const mapDispatchToProps = (dispatch) => {
 			evt.preventDefault()
 			return dispatch({type: LOGIN_SUBMIT})
 		},
+		handleAlert: () => {
+			return dispatch({type: LOGIN_ALERT, payload: null})
+		}
 	};
 };
 

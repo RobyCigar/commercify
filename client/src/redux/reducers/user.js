@@ -1,10 +1,10 @@
 import { USER, TOKEN } from 'redux/constants'
 const initialState = {
-	email: "",
-	firstName: "",
-	id: "",
-	lastName: "",
-	role: "",
+	email: null,
+	firstName: null,
+	id: null,
+	lastName: null,
+	role: null,
 	token: null
 }
 

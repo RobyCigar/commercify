@@ -12,18 +12,24 @@ import Navbar from "components/navbar";
 import Footer from "components/footer";
 import { LOGIN_EMAIL as EMAIL, LOGIN_PASSWORD as PASSWORD} from "redux/constants"
 
-const Login = ({email, password, alert, success, handleChange, handleSubmit, user, token}) => {
+const Login = ({email, password, alert, success, handleChange, handleSubmit, user, token, handleAlert}) => {
 	const [ cookies, setCookies ] = useCookies()
+	const [ visible, setVisible ] = useState(false)
 	const [ auth, setAuth ] = useState(null)
 
 	useEffect(() => {
 		// store token to cookie hooks 
+
 		if(token) {
 			setCookies('token', token, { path: '/', sameSite: true})
-			console.log('cookies stored')
 		}
-	}, [token])
+	}, [token, alert])
 	
+	const onDismiss = () =>  {
+		setVisible(!visible)
+		handleAlert()
+	}
+
 	if(cookies.token){
 		return (
 			<Redirect to="home"/>
@@ -39,6 +45,8 @@ const Login = ({email, password, alert, success, handleChange, handleSubmit, use
         <Alert
           style={{ position: "fixed", top: 0, width: "100vw", margin: 0 }}
           color="info"
+          isOpen={true}
+          toggle={onDismiss}
         >
           {alert}
         </Alert>

@@ -9,6 +9,7 @@ import {
 import { useCookies } from 'react-cookie'
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { fetchUser } from 'api'
 
 
 // components
@@ -20,12 +21,12 @@ import Home from './home'
 import AddProduct from './product/add'
 import ProductId from './product/_id'
 import NotFound from './404_not_found'
+import MyProduct from './product/my_product'
 
 const Routes = ({handleUser}) => {
   const [cookies, setCookie] = useCookies()
 
   useEffect(() => {
-    console.log('here')
     if(cookies.token) { 
       handleUser(cookies.token)
     }
@@ -60,7 +61,6 @@ const Routes = ({handleUser}) => {
 const PrivateRoute = ({children, ...rest}) => {
   const [cookie, setCookie] = useCookies()
 
-  console.log("here1", cookie.token, cookie)
   return (
     <Route
       {...rest}
@@ -88,6 +88,9 @@ const Product = () => {
     <Switch>
       <Route exact path={`${path}/add`}>
         <AddProduct/>
+      </Route>
+      <Route path={`${path}/my-product`}>
+        <MyProduct/>
       </Route>
       <Route path={`${path}/:id`}>
         <ProductId/>

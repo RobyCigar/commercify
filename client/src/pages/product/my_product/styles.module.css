@@ -1,0 +1,12 @@
+.desc {
+	width: 150px;
+	height: 40px;
+	white-space: nowrap ;
+	overflow: hidden ;
+	text-overflow: ellipsis ;
+}
+
+.trash {
+	height: 20px;
+	margin: auto;
+}

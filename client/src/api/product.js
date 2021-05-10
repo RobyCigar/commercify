@@ -85,3 +85,28 @@ export const productAdd = async (data, token) => {
 			console.log(error.config);
 		});
 };
+
+export const deleteProduct = async (id, token) => {
+	return await axios({
+		method: "delete",
+		url: `${URL}/product/delete/${id}`,
+		headers: {
+			Authorization: token
+		}
+	})
+		.then((res) => {
+			console.log(res);
+		})
+		.catch(function (error) {
+			if (error.response) {
+				console.log(error.response.data);
+				console.log(error.response.status);
+				console.log(error.response.headers);
+			} else if (error.request) {
+				console.log(error.request);
+			} else {
+				console.log("Error", error.message);
+			}
+			console.log(error.config);
+		});
+};

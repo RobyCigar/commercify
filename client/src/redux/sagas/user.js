@@ -1,6 +1,6 @@
 import { fetchUser } from 'api'
 import { select, call, takeEvery, put } from 'redux-saga/effects'
-import { FETCH_USER, USER } from 'redux/constants'
+import { FETCH_USER, USER, TOKEN } from 'redux/constants'
 
 const getStateFromStore = ({user}) => {
 	return user.token;
@@ -8,7 +8,6 @@ const getStateFromStore = ({user}) => {
 
 function* userSaga() {
   const token = yield select(getStateFromStore)
-  console.log('token', token)
   try {
     const user = yield call(fetchUser, token)
     console.log(user)
@@ -20,7 +19,7 @@ function* userSaga() {
 }
 
 function* watchUserAsync() {
-  yield takeEvery(FETCH_USER, userSaga)
+  yield takeEvery(TOKEN, userSaga)
 }
 
 export default watchUserAsync;

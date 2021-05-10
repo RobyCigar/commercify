@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { connect } from "react-redux";
@@ -20,6 +20,12 @@ import {
 import gear from "../assets/cogs.svg";
 import PropTypes from "prop-types";
 
+const mapStateToProps = ({ user }) => {
+	return {
+		role: user.role,
+	};
+};
+
 const mapDispatchToProps = (dispatch) => {
 	return {
 		handleLogout: (removeCookie, token) => {
@@ -29,14 +35,16 @@ const mapDispatchToProps = (dispatch) => {
 	};
 };
 
-const Navigation = ({ login, register, logout, handleLogout }) => {
+const Navigation = ({ login, register, logout, handleLogout, role }) => {
 	const [cookies, setCookie, removeCookie] = useCookies();
 	const [isOpen, setIsOpen] = useState(false);
 
 	const logoutUser = () => {
-		console.log("clicked")
+		console.log("clicked");
 		handleLogout(removeCookie, "token");
 	};
+	
+	console.log('role', role)
 
 	const toggle = () => setIsOpen(!isOpen);
 	return (
@@ -105,7 +113,11 @@ const Navigation = ({ login, register, logout, handleLogout }) => {
 								<DropdownMenu>
 									<DropdownItem header>Settings</DropdownItem>
 									<DropdownItem>My Profile</DropdownItem>
-									<DropdownItem>My Product</DropdownItem>
+									{role === "ROLE_ADMIN" || role === "ROLE_MERCHANT" ? (
+										<Link to="/product/my-product"> 
+										<DropdownItem>My Product</DropdownItem>
+										</Link>
+									) : null}
 									<DropdownItem divider />
 									<DropdownItem onClick={logoutUser}>
 										Logout
@@ -120,11 +132,4 @@ const Navigation = ({ login, register, logout, handleLogout }) => {
 	);
 };
 
-// Navigation.propTypes = {
-// 	login: PropTypes.bool,
-// 	register: PropTypes.bool,
-// 	logout: PropTypes.bool,
-// 	handleLogout: PropTypes.bool,
-// };
-
-export default connect(null, mapDispatchToProps)(Navigation);
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
