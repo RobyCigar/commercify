@@ -1,6 +1,6 @@
 import { fetchUser } from 'api'
 import { select, call, takeEvery, put } from 'redux-saga/effects'
-import { FETCH_USER, USER, TOKEN } from 'redux/constants'
+import { USER, TOKEN } from 'redux/constants'
 
 const getStateFromStore = ({user}) => {
 	return user.token;

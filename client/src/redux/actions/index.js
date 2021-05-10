@@ -6,4 +6,3 @@ export {default as productAction} from './product';
 export {default as productAddAction} from './productAdd';
 
 export {default as userAction} from './user';
-export {default as welcomeAction} from './welcome';

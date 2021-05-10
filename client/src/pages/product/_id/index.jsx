@@ -6,15 +6,17 @@ import { fetchProduct } from "api";
 import Navbar from "components/navbar";
 import Footer from "components/footer";
 import Moment from 'react-moment';
+import styles from './styles.module.css'
+
 
 function Product(props) {
 	const [product, setProduct] = useState(null);
 	const { id } = useParams();
 
-	useEffect(async () => {
-		const result = await fetchProduct(id);
+	useEffect(() => {
+		const result = fetchProduct(id);
 		setProduct(result);
-	}, []);
+	}, [id]);
 
 	if (!product) {
 		return (
@@ -38,8 +40,8 @@ function Product(props) {
 			<div className="d-flex my-5 flex-lg-row flex-column align-items-center">
 				<img
 					src={`${process.env.REACT_APP_ROUTE_DEV}/${imageUrl}`}
-					alt="Card image cap"
-					className="mx-auto"
+					alt="Product"
+					className={`mx-auto ${styles.img}`}
 				/>
 				<div className="w-50 mx-auto m-5">
 					<h1 className="font-weight-bold text-primary">{name}</h1> 

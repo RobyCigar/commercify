@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { connect } from "react-redux";
 import { TOKEN } from "redux/constants";
@@ -18,7 +18,6 @@ import {
 	Button,
 } from "reactstrap";
 import gear from "../assets/cogs.svg";
-import PropTypes from "prop-types";
 
 const mapStateToProps = ({ user }) => {
 	return {
@@ -36,15 +35,12 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const Navigation = ({ login, register, logout, handleLogout, role }) => {
-	const [cookies, setCookie, removeCookie] = useCookies();
+	const [ , , removeCookie] = useCookies();
 	const [isOpen, setIsOpen] = useState(false);
 
 	const logoutUser = () => {
-		console.log("clicked");
 		handleLogout(removeCookie, "token");
 	};
-	
-	console.log('role', role)
 
 	const toggle = () => setIsOpen(!isOpen);
 	return (
@@ -54,7 +50,7 @@ const Navigation = ({ login, register, logout, handleLogout, role }) => {
 				<Collapse isOpen={isOpen} navbar>
 					<Nav className="mr-auto" navbar>
 						<NavItem className="ml-3">
-							<Link to="/">
+							<Link to="/home">
 								<NavLink>Home</NavLink>
 							</Link>
 						</NavItem>
@@ -63,11 +59,13 @@ const Navigation = ({ login, register, logout, handleLogout, role }) => {
 								GitHub
 							</NavLink>
 						</NavItem>
+						{ role === "ROLE_ADMIN" || role === "ROLE_MERCHANT" ? (
 						<NavItem className="ml-3">
 							<Link to="/product/add">
 								<NavLink>Start Selling</NavLink>
 							</Link>
 						</NavItem>
+							) : null }
 						<NavItem className="ml-3">
 							<Link to="/home">
 								<NavLink>All Products</NavLink>

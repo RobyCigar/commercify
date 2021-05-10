@@ -20,10 +20,15 @@ const mapDispatchToProps = dispatch => {
 			}
 			return dispatch({ type: REGISTER_SUBMIT })
 		},
+		handleAlert: () => {
+			return dispatch({type: REGISTER_ALERT, payload: null})
+		}
 	}
 }
 
-export default {
+const action = {
 	state: mapStateToProps,
 	dispatch: mapDispatchToProps
-}
+};
+
+export default action;

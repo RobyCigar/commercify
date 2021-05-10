@@ -4,13 +4,10 @@ import {
 	Route,
   useRouteMatch,
   Redirect,
-  useParams
 } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchUser } from 'api'
-
 
 // components
 import { userAction } from 'redux/actions'
@@ -24,13 +21,13 @@ import NotFound from './404_not_found'
 import MyProduct from './product/my_product'
 
 const Routes = ({handleUser}) => {
-  const [cookies, setCookie] = useCookies()
+  const [cookies] = useCookies()
 
   useEffect(() => {
     if(cookies.token) { 
       handleUser(cookies.token)
     }
-  }, [handleUser])
+  }, [handleUser, cookies.token])
 
   return (
    		<Router>
@@ -59,7 +56,7 @@ const Routes = ({handleUser}) => {
 }
 
 const PrivateRoute = ({children, ...rest}) => {
-  const [cookie, setCookie] = useCookies()
+  const [cookie] = useCookies()
 
   return (
     <Route
@@ -81,9 +78,8 @@ const PrivateRoute = ({children, ...rest}) => {
 }
 
 const Product = () => {
-  const { path, url } = useRouteMatch()
-  const slug = useParams()
-
+  const { path } = useRouteMatch()
+  
   return (
     <Switch>
       <Route exact path={`${path}/add`}>

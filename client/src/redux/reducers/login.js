@@ -1,4 +1,4 @@
-import { LOGIN_EMAIL, LOGIN_PASSWORD, LOGIN_ALERT, LOGIN_SUCCESS, LOGIN_SUBMIT } from 'redux/constants'
+import { LOGIN_EMAIL, LOGIN_PASSWORD, LOGIN_ALERT, LOGIN_SUBMIT } from 'redux/constants'
 
 const initialState = {
 	email: "",

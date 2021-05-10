@@ -32,8 +32,6 @@ export const login = async (data) => {
 };
 
 export const register = async (data, setAlert, setSuccess) => {
-	const { email, firstname, lastname, password } = data;
-
 	return await axios({
 		method: "post",
 		url: `${URL}/auth/register`,

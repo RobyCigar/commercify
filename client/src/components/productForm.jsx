@@ -10,9 +10,7 @@ import {
   PRODUCT_ADD_NAME,
   PRODUCT_ADD_DESCRIPTION,
   PRODUCT_ADD_PRICE,
-  PRODUCT_ADD_PICTURE,
   PRODUCT_ADD_QUANTITY,
-  PRODUCT_ADD_SUBMIT
 } from "redux/constants";
 import MyDropzone from './dropzone'
 

@@ -67,7 +67,6 @@ export const productAdd = async (data, token) => {
 		},
 	})
 		.then((res) => {
-			const jwt = res.data.token;
 			console.log("ini response", res);
 			return res.data.message;
 		})

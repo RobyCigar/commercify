@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { FormText, Alert, UncontrolledAlert } from "reactstrap";
+import { FormText, Alert } from "reactstrap";
 import { Link, Redirect } from "react-router-dom";
 import { FacebookLoginButton, GoogleLoginButton, GithubLoginButton } from 'react-social-login-buttons';
 import { connect } from 'react-redux'
@@ -10,12 +10,12 @@ import { loginAction } from "redux/actions"
 import Forms from "components/forms";
 import Navbar from "components/navbar";
 import Footer from "components/footer";
+// import popUp from "helpers/window-popup";
 import { LOGIN_EMAIL as EMAIL, LOGIN_PASSWORD as PASSWORD} from "redux/constants"
 
 const Login = ({email, password, alert, success, handleChange, handleSubmit, user, token, handleAlert}) => {
 	const [ cookies, setCookies ] = useCookies()
 	const [ visible, setVisible ] = useState(false)
-	const [ auth, setAuth ] = useState(null)
 
 	useEffect(() => {
 		// store token to cookie hooks 
@@ -23,7 +23,7 @@ const Login = ({email, password, alert, success, handleChange, handleSubmit, use
 		if(token) {
 			setCookies('token', token, { path: '/', sameSite: true})
 		}
-	}, [token, alert])
+	}, [token, alert, setCookies])
 	
 	const onDismiss = () =>  {
 		setVisible(!visible)

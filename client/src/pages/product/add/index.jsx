@@ -1,8 +1,7 @@
-import { useReducer } from "react";
 import { connect } from "react-redux";
 import Navbar from "components/navbar";
 import Forms from "components/productForm";
-import { Button, UncontrolledAlert } from "reactstrap";
+import { UncontrolledAlert } from "reactstrap";
 import { productAddAction } from "redux/actions";
 
 

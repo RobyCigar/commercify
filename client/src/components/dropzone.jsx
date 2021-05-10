@@ -1,14 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { productAddAction } from "redux/actions";
-import AvatarEditor from "react-avatar-editor";
-import { Button } from "reactstrap";
 import { useDropzone } from "react-dropzone";
 import styles from "./dropzone.module.css";
 
 function MyDropzone({ handlePicture }) {
 	const [files, setFiles] = useState([]);
-	const inputEl = useRef(null);
 
 	const { getRootProps, getInputProps } = useDropzone({
 		accept: "image/*",
@@ -35,7 +32,7 @@ function MyDropzone({ handlePicture }) {
 	const thumbs = files.map((file) => (
 		<div className={styles.thumb} key={file.name}>
 			<div className={styles.thumbInner}>
-				<img src={file.preview} className={styles.img} />
+				<img src={file.preview} alt="foto produk" className={styles.img} />
 			</div>
 		</div>
 	));

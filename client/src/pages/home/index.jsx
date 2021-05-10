@@ -1,18 +1,14 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { connect, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import {
 	Button,
 	Card,
 	CardTitle,
-	CardHeader,
-	CardFooter,
 	CardBody,
 	CardText,
-	CardImg,
 	CardSubtitle,
 } from "reactstrap";
-import { useCookies } from "react-cookie";
 import { useState } from "react";
 import Loader from "react-loader-spinner";
 import ReactPaginate from "react-paginate";
@@ -21,17 +17,15 @@ import { homeAction } from "redux/actions";
 import styles from "./styles.module.css";
 import Footer from "components/footer";
 import Navbar from "components/navbar";
-import { fetchUser, fetchProducts } from "api";
+import { fetchProducts } from "api";
 
 const Home = () => {
-	const [cookie] = useCookies();
 	const [products, setProducts] = useState(null);
 	const [pageCount, setPageCount] = useState(4);
 	const [tmpItems, setTmpItems] = useState(null);
 
-	useEffect(async () => {
-		let userResult = await fetchUser(cookie.token);
-		let productResult = await fetchProducts();
+	useEffect(() => {
+		let productResult = fetchProducts();
 		setProducts(productResult);
 		// Fetch first 6 items in the array
 		setTmpItems(productResult.slice(0, 6));
@@ -75,7 +69,7 @@ const Home = () => {
 					>
 						<img
 							src={`${process.env.REACT_APP_ROUTE_DEV}/${val.imageUrl}`}
-							alt="Card image cap"
+							alt={val.name}
 							className={styles.img}
 						/>
 						<CardBody>

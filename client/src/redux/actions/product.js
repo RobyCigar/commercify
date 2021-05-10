@@ -8,7 +8,9 @@ const mapDispatchToProps = (dispatch) => {
 	//return all product
 }
 
-export default {
+const action = {
 	state: mapStateToProps,
 	dispatch: mapDispatchToProps
 }
+
+export default action;

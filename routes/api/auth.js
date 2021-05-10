@@ -88,7 +88,7 @@ router.post("/register", (req, res) => {
   }
 
   if(!regexPassword.test(password)) {
-    return res.status(400).json({ error : "Password must contains, one digit from 0-9, one lowercase characters, one special character, length from 8-20 characters"})
+    return res.status(400).json({ error : "Password must contains at least one digit from 0-9, one lowercase characters, one special character, length from 8-20 characters"})
   }
 
 
@@ -329,8 +329,6 @@ router.get(
       id: req.user.id,
     };
 
-    console.log('ini user', req.user)
-
     jwt.sign(payload, secret, { expiresIn: tokenLife }, (err, token) => {
       if(err) {
         console.log('error', err)
@@ -342,9 +340,10 @@ router.get(
     <html>
       <script>
         // Save JWT to cookie
-        document.cookie = 'token=${jwt};'
+        // document.cookie = 'token=${jwt};'
+        document.cookie = 'token=${jwt}; SameSite=None; Secure'
         // Redirect browser to root of application
-        window.open('http://localhost:3000/home', '_self')
+        window.open('http://localhost:3000/login', '_self')
       </script>
     </html>
     `;

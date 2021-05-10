@@ -5,7 +5,6 @@ import Footer from 'components/footer'
 import Loader from "react-loader-spinner"
 import { fetchProducts, deleteProduct } from 'api';
 import Table from './table';
-import styles from './styles.module.css'
 
 const mapStateToProps = ({user}) => {
   return {
@@ -17,8 +16,8 @@ const MyProduct = ({token}) => {
   const [ products, setProducts ] = useState(null);
   const [ deleted, setDeleted ] = useState(false);
 
-  useEffect(async () => {
-    const result = await fetchProducts();
+  useEffect(() => {
+    const result = fetchProducts();
     setProducts(result);
   }, [deleted])
 
