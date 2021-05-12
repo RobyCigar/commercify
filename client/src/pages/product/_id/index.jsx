@@ -14,8 +14,13 @@ function Product(props) {
 	const { id } = useParams();
 
 	useEffect(() => {
-		const result = fetchProduct(id);
-		setProduct(result);
+		async function fetch () {
+			const result = await fetchProduct(id);
+			setProduct(result);			
+		}
+
+		fetch()
+	
 	}, [id]);
 
 	if (!product) {

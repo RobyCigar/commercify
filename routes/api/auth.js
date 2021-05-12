@@ -326,24 +326,23 @@ router.get(
   }),
   (req, res) => {
     const payload = {
-      id: req.user.id,
+      id: req.user._id,
     };
 
     jwt.sign(payload, secret, { expiresIn: tokenLife }, (err, token) => {
       if(err) {
         console.log('error', err)
       }
+
+      console.log("ini user", req.user)
+      console.log("ini token", token)
       const jwt = `Bearer ${token}`;
-      console.log('ini token', token)
 
       const htmlWithEmbeddedJWT = `
     <html>
       <script>
-        // Save JWT to cookie
-        // document.cookie = 'token=${jwt};'
-        document.cookie = 'token=${jwt}; SameSite=None; Secure'
         // Redirect browser to root of application
-        window.open('http://localhost:3000/login', '_self')
+        window.open('${process.env.CLIENT_DEV}/login/${jwt}', '_self')
       </script>
     </html>
     `;

@@ -7,27 +7,34 @@ import {
 } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import { useEffect } from 'react'
-import { connect } from 'react-redux'
-
+import { connect, useDispatch, useSelector } from 'react-redux'
+ 
 // components
-import { userAction } from 'redux/actions'
-import LandingPage from './welcome'
-import Login from './login'
-import Register from './register'
-import Home from './home'
-import AddProduct from './product/add'
-import ProductId from './product/_id'
-import NotFound from './404_not_found'
 import MyProduct from './product/my_product'
+import { userAction } from 'redux/actions'
+import { TOKEN } from 'redux/constants'
+import AddProduct from './product/add'
+import NotFound from './404_not_found'
+import ProductId from './product/_id'
+import LandingPage from './welcome'
+import Register from './register'
+import Login from './login'
+import Oauth from './oauth'
+import Home from './home'
 
 const Routes = ({handleUser}) => {
   const [cookies] = useCookies()
 
+  console.log('fuck', cookies)
+
   useEffect(() => {
-    if(cookies.token) { 
-      handleUser(cookies.token)
+    async function fetch() {
+      if(cookies.token) { 
+        await handleUser(cookies.token)
+      }
     }
-  }, [handleUser, cookies.token])
+    fetch();
+  }, [cookies]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
    		<Router>
@@ -36,7 +43,7 @@ const Routes = ({handleUser}) => {
             <LandingPage/>
    				</Route>
           <Route path="/login">
-            <Login/>
+            <LoginRoute/>
           </Route>
           <Route path="/register">
             <Register/>
@@ -45,7 +52,7 @@ const Routes = ({handleUser}) => {
             <Home/>
           </PrivateRoute>
           <PrivateRoute path="/product">
-            <Product/>
+            <ProductRoute/>
           </PrivateRoute>
           <Route path="*">
             <NotFound/>
@@ -56,13 +63,21 @@ const Routes = ({handleUser}) => {
 }
 
 const PrivateRoute = ({children, ...rest}) => {
-  const [cookie] = useCookies()
+  const [cookies] = useCookies()
+  const userToken = useSelector(state => state.user.token)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if(cookies.token) {
+      dispatch({type: TOKEN, payload: cookies.token })
+    }
+  }, [cookies]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        cookie.token ? (
+        cookies.token ? (
           children
         ) : (
           <Redirect
@@ -77,7 +92,7 @@ const PrivateRoute = ({children, ...rest}) => {
   )
 }
 
-const Product = () => {
+const ProductRoute = () => {
   const { path } = useRouteMatch()
   
   return (
@@ -95,5 +110,18 @@ const Product = () => {
   )
 }
 
+const LoginRoute = () => {
+  const { path } = useRouteMatch()
+  return (
+    <Switch>
+      <Route exact path={`${path}`}>
+        <Login/>
+      </Route>
+      <Route path={`${path}/:token`}>
+        <Oauth/>
+      </Route>
+    </Switch>
+  )
+}
 
 export default connect(null, userAction.dispatch)(Routes);

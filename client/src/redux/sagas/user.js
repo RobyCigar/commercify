@@ -1,7 +1,7 @@
-import { fetchUser } from 'api'
 import { select, call, takeEvery, put } from 'redux-saga/effects'
-import { USER, TOKEN } from 'redux/constants'
-
+import { USER, TOKEN, FETCH_USER } from 'redux/constants'
+import { fetchUser } from 'api'
+ 
 const getStateFromStore = ({user}) => {
 	return user.token;
 }
@@ -10,16 +10,15 @@ function* userSaga() {
   const token = yield select(getStateFromStore)
   try {
     const user = yield call(fetchUser, token)
-    console.log(user)
     yield put({type: USER, payload: user})
   } catch (e) {
     console.log('ini err', e)
-    yield put({type: USER})
+    yield put({type: USER, payload: null})
   }
 }
 
 function* watchUserAsync() {
-  yield takeEvery(TOKEN, userSaga)
+  yield takeEvery(FETCH_USER, userSaga)
 }
 
 export default watchUserAsync;

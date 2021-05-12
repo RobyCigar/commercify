@@ -1,56 +1,78 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 import { FormText, Alert } from "reactstrap";
 import { Link, Redirect } from "react-router-dom";
-import { FacebookLoginButton, GoogleLoginButton, GithubLoginButton } from 'react-social-login-buttons';
-import { connect } from 'react-redux'
-import { useCookies } from 'react-cookie'
-import { loginAction } from "redux/actions"
-
+import {
+	FacebookLoginButton,
+	GoogleLoginButton,
+	GithubLoginButton,
+} from "react-social-login-buttons";
+import { connect } from "react-redux";
+import { useCookies } from "react-cookie";
+import { loginAction } from "redux/actions";
 
 import Forms from "components/forms";
 import Navbar from "components/navbar";
 import Footer from "components/footer";
 // import popUp from "helpers/window-popup";
-import { LOGIN_EMAIL as EMAIL, LOGIN_PASSWORD as PASSWORD} from "redux/constants"
+import {
+	LOGIN_EMAIL as EMAIL,
+	LOGIN_PASSWORD as PASSWORD,
+} from "redux/constants";
 
-const Login = ({email, password, alert, success, handleChange, handleSubmit, user, token, handleAlert}) => {
-	const [ cookies, setCookies ] = useCookies()
-	const [ visible, setVisible ] = useState(false)
+const Login = ({
+	email,
+	password,
+	alert,
+	success,
+	handleChange,
+	handleSubmit,
+	user,
+	token,
+	handleAlert,
+}) => {
+	const [cookies, setCookies] = useCookies();
+	const [visible, setVisible] = useState(false);
 
 	useEffect(() => {
-		// store token to cookie hooks 
-
-		if(token) {
-			setCookies('token', token, { path: '/', sameSite: true})
+		// store token to cookie hooks
+		if (token) {
+			setCookies("token", token, {
+        // expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 7),
+        secure: true,
+        sameSite: true,
+      });
 		}
-	}, [token, alert, setCookies])
-	
-	const onDismiss = () =>  {
-		setVisible(!visible)
-		handleAlert()
+	}, [token, alert]);
+
+	const onDismiss = () => {
+		setVisible(!visible);
+		handleAlert();
+	};
+
+	if (cookies.token) {
+		return <Redirect to="home" />;
 	}
 
-	if(cookies.token){
-		return (
-			<Redirect to="home"/>
-		)
-	}
-
-	const links = [FacebookLoginButton, GoogleLoginButton, GithubLoginButton]
+	const links = [FacebookLoginButton, GoogleLoginButton, GithubLoginButton];
 
 	return (
 		<>
 			<Navbar register={true} />
-      {alert ? (
-        <Alert
-          style={{ position: "fixed", top: 0, width: "100vw", margin: 0 }}
-          color="info"
-          isOpen={true}
-          toggle={onDismiss}
-        >
-          {alert}
-        </Alert>
-      ) : null}
+			{alert ? (
+				<Alert
+					style={{
+						position: "fixed",
+						top: 0,
+						width: "100vw",
+						margin: 0,
+					}}
+					color="info"
+					isOpen={true}
+					toggle={onDismiss}
+				>
+					{alert}
+				</Alert>
+			) : null}
 			<h2 className="text-center text-dark my-5">
 				<strong className="h2">Login</strong>
 			</h2>
@@ -63,26 +85,25 @@ const Login = ({email, password, alert, success, handleChange, handleSubmit, use
 						ONCHANGE={handleChange}
 					/>
 					<FormText color="muted">
-						Don't have account? <Link to="/register">Sign up </Link>now
+						Don't have account? <Link to="/register">Sign up </Link>
+						now
 					</FormText>
 				</div>
 				<h4 className="m-4">or</h4>
 				<div className="d-flex m-4 flex-column justify-content-center w-50">
-					{
-						links.map((Link, index) => {
-							return (
-								<Link
-									className="my-3"
-									onClick={() =>
-										window.open(
-											"http://localhost:8000/api/auth/google/callback",
-											"_self"
-										)
-									}
-								/>
-							)
-						})
-					}
+					{links.map((Link, index) => {
+						return (
+							<Link
+								className="my-3"
+								onClick={() =>
+									window.open(
+										"http://localhost:8000/api/auth/google/callback",
+										"_self"
+									)
+								}
+							/>
+						);
+					})}
 				</div>
 			</div>
 			<Footer />

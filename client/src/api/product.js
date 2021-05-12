@@ -55,8 +55,6 @@ export const productAdd = async (data, token) => {
 	Data.append("price", price)
 	Data.append("quantity", quantity)
 
-	console.log('ini data', data, "product-image");
-
 	return await axios({
 		method: "post",
 		data: Data,
@@ -67,7 +65,6 @@ export const productAdd = async (data, token) => {
 		},
 	})
 		.then((res) => {
-			console.log("ini response", res);
 			return res.data.message;
 		})
 		.catch(function (error) {

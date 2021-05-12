@@ -1,4 +1,4 @@
-import { PRODUCT_ADD_SUBMIT, PRODUCT_ADD_PICTURE } from 'redux/constants'
+import { PRODUCT_ADD_SUBMIT, PRODUCT_ADD_PICTURE, PRODUCT_ADD_ALERT } from 'redux/constants'
 
 const mapStateToProps = ({product}) => {
 	return {alert: product.alert};
@@ -24,8 +24,11 @@ const mapDispatchToProps = (dispatch) => {
 			return dispatch({type: PRODUCT_ADD_SUBMIT})
 		},
 		handlePicture: file => {
-			console.log("pic", file)
 			return dispatch({type: PRODUCT_ADD_PICTURE, payload: file })
+		},
+		handleAlert: () => {
+			// remove alert state when alert component closed
+			return dispatch({type: PRODUCT_ADD_ALERT, payload: null})
 		}
 	}
 } 

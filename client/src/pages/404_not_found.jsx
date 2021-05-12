@@ -1,3 +1,5 @@
+import image from 'assets/404.png'
+
 const style = {
 	height: "100vh",
 	width: "100vw",
@@ -7,10 +9,16 @@ const style = {
 	fontWeight: 900,
 };
 
+const imageStyle = {
+	minWidth: 200,
+	width: 400,
+}
+
 function NotFound() {
 	return (
-		<div style={style}>
-			<h1 className="text-dark">404 Not Found</h1>
+		<div style={style} className="flex-column flex-md-row" >
+			<img src={image} style={imageStyle} alt="page not found" />
+			<h1 className="text-dark">Page Not Found</h1>
 		</div>
 	);
 }

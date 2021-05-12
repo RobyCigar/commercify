@@ -31,7 +31,7 @@ const ProductForm = ({handleChange, handleSubmit}) => {
       </FormGroup>
       <FormGroup>
         <Label for="PRICE">Price</Label>
-        <Input onChange={handleChange} type="number" min="0" step="100" name={PRODUCT_ADD_PRICE} placeholder="Product Available" id="exampleText" />
+        <Input onChange={handleChange} type="number" min="0" step="100" name={PRODUCT_ADD_PRICE} placeholder="Product Price" id="exampleText" />
       </FormGroup>
       <FormGroup>
         <Label for="PRICE">Picture</Label>

@@ -1,6 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 import {
 	Button,
 	Card,
@@ -9,14 +8,15 @@ import {
 	CardText,
 	CardSubtitle,
 } from "reactstrap";
-import { useState } from "react";
+import { useDispatch } from 'react-redux';
+import { useCookies } from 'react-cookie'
 import Loader from "react-loader-spinner";
 import ReactPaginate from "react-paginate";
 
-import { homeAction } from "redux/actions";
 import styles from "./styles.module.css";
 import Footer from "components/footer";
 import Navbar from "components/navbar";
+import { TOKEN } from "redux/constants";
 import { fetchProducts } from "api";
 
 const Home = () => {
@@ -25,26 +25,27 @@ const Home = () => {
 	const [tmpItems, setTmpItems] = useState(null);
 
 	useEffect(() => {
-		let productResult = fetchProducts();
-		setProducts(productResult);
-		// Fetch first 6 items in the array
-		setTmpItems(productResult.slice(0, 6));
-		console.log(productResult);
-		// Length of product divide by item in each page
-		setPageCount(productResult.length / 6);
+		try {
+			async function fetch() {
+				let productResult = await fetchProducts();
+				setProducts(productResult);
+				// Fetch first 6 items in the array
+				setTmpItems(productResult.slice(0, 6));
+				// Length of product divide by item in each page
+				setPageCount(productResult.length / 6);
+			}
+			fetch()
+		} catch (e) {
+			// console.log("error", e)
+		}
 	}, []);
 
 	const handlePageClick = (data) => {
 		let num = data.selected;
-		console.log("clicked", num);
 		// change the next 6 or prev 6 items when the btn clicked
 		setTmpItems(products.slice(num * 6, num * 6 + 6));
 	};
 
-	const onPageActive = (data) => {
-		console.log("fuck", data);
-	};
-	console.log("tmp", tmpItems);
 
 	if (!products || !tmpItems) {
 		return (
@@ -77,7 +78,6 @@ const Home = () => {
 								<Link
 									to={{
 										pathname: `product/${val._id}`,
-										state: { shit: "okay" },
 									}}
 									style={{ fontSize: 18 }}
 									className="font-weight-bold"
@@ -107,7 +107,6 @@ const Home = () => {
 				containerClassName={styles.container}
 				marginPagesDisplayed={0}
 				nextLabel={"next >"}
-				onPageActive={onPageActive}
 				onPageChange={handlePageClick}
 				pageRangeDisplayed={5}
 				pageClassName={styles.page}
@@ -121,4 +120,4 @@ const Home = () => {
 	);
 };
 
-export default connect(homeAction.state, homeAction.dispatch)(Home);
+export default Home;
