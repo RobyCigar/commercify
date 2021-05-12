@@ -43,7 +43,7 @@ const Routes = ({handleUser}) => {
             <LandingPage/>
    				</Route>
           <Route path="/login">
-            <LoginRoute/>
+            <LoginRoute/> 
           </Route>
           <Route path="/register">
             <Register/>

@@ -61,9 +61,9 @@ const Navigation = ({
 
 	const toggle = () => setIsOpen(!isOpen);
 
-	if (!token) {
-		return <Redirect to="/login" />;
-	}
+	// if (!token) {
+	// 	return <Redirect to="/login" />;
+	// }
 
 	return (
 		<div>
