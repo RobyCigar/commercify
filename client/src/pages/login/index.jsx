@@ -97,7 +97,7 @@ const Login = ({
 								className="my-3"
 								onClick={() =>
 									window.open(
-										"http://localhost:8000/api/auth/google/callback",
+										`${process.env.REACT_APP_API_DEV}/auth/google/callback`,
 										"_self"
 									)
 								}
