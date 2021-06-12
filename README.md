@@ -10,4 +10,4 @@
 -	[] Shopping Cart
 -	[] Newsletter
 
-#### How to request file with http `http post :8000/url/to/api name@filename -vf`
+#### How to make request file with httpie application `http post :8000/url/to/api name@filename -vf`
